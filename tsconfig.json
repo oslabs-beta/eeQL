@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // strict mode if off to prevent strong type errors
+    "strict": false,
+    // transpilation method to help interact with node.js
+    "module": "commonjs",
+    // importing document object model and previous ES libraries
+    "lib": ["ES2015", "ES2016", "ES2017", "ES2018", "dom"],
+    // sets the browser transpilation type
+    "target": "es5",
+
+    // set to true to allow imported JSX files in TSX modules.
+    "allowJs": true,
+    "jsx": "react",
+
+    // set to true to allow editing of previously compiled ts files.
+    // further serve importing between JSX and TSX files.
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // export conditions to webpack build folder
+    "outDir": "./dist",
+  },
+  // applies to:
+  "include": ["./src", "public"],
+  "exclude": ["node_modules", "dist"],
+
+}
+ 
