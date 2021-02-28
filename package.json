@@ -1,0 +1,135 @@
+{
+  "name": "eeql",
+  "version": "1.0.0",
+  "description": "A tool to help test, visualize and optimize your data.",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/eeQL.git"
+  },
+  "keywords": [
+    "testing",
+    "electron",
+    "graphQL"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/eeQL/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/eeQL#readme",
+  "author": "eeQL",
+  "contributors": [
+    "Ramtin Khoee",
+    "_",
+    "_",
+    "_",
+    "_"
+  ],
+  "scripts": {
+    "prod": "npm run prod:react && npm run prod:electron",
+    "p-react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "p-electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
+    "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "d-react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
+    "e-build": "electron-builder"
+  },
+  "build": {
+    "directories": {
+      "output": "build",
+      "buildResources": "assets"
+    },
+    "extends": null,
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "productName": "eeQL",
+    "appId": "com.electron.pinocchio",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
+      "icon": null,
+      "contents": [
+        {
+          "x": 100,
+          "y": 150
+        },
+        {
+          "x": 300,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "snap"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^8.2.2",
+    "electron-builder": "^22.7.0",
+    "electron-webpack": "^2.8.2",
+    "electron-is-dev": "^1.2.0",
+    "electron-devtools-installer": "^3.1.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^1.3.2",
+    "babel-loader": "^8.1.0",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.5",
+    "typescript": "^4.1.3",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/react-router-dom": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "css-loader": "^5.0.1",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "svg-url-loader": "^7.1.1",
+    "ts-loader": "^8.0.14",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "html-webpack-plugin": "^4.2.0",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "concurrently": "^5.3.0",
+    "monaco-editor": "^0.21.2",
+    "monaco-editor-electron": "^1.0.6",
+    "monaco-editor-webpack-plugin": "^2.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-monaco-editor": "^0.41.2",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1"
+  }
+}
