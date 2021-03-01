@@ -20,16 +20,16 @@
   "author": "eeQL",
   "contributors": [
     "Ramtin Khoee",
-    "_",
+    "Kimberley Spicer",
     "_",
     "_",
     "_"
   ],
   "scripts": {
-    "prod": "npm run prod:react && npm run prod:electron",
+    "prod": "npm run p-react && npm run p-electron",
     "p-react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
     "p-electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
-    "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "dev": " concurrently \"npm run d-electron\" \"npm run d-react\"",
     "d-react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
     "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
     "e-build": "electron-builder"
