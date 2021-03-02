@@ -22,7 +22,7 @@ module.exports = {
   },
 
 // describe compilation environment
-  target: 'web',
+  target: 'node',
 // resolve missing extensions and allow import of node modules
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],
