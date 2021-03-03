@@ -7,15 +7,15 @@ export const InputState = React.createContext(state);
 
 //initial state
 const CodeProviders = ({ children }: any) => {
-    const [input, setInput] = useState('');
+    const [myPath, setPath] = useState('');
     const [fileTree, setFileTree] = useState([]);
     const [chosenFile, setChosenFile] = useState('');
     const [testFileName, setTestFileName] = useState('');
     const [toggleTree, setToggleTree] = useState(true);
 //handler that changes it
-    const inputHandler = (inputValue: string):void => {
-        setInput(inputValue)
-        console.log(InputState)
+    const pathHandler = (pathValue: string):void => {
+        setPath(pathValue)
+        console.log()
     };
     const fileTreeHandler = (tree: any): void => {
         setFileTree(tree);
@@ -32,8 +32,8 @@ const CodeProviders = ({ children }: any) => {
 return (
     <InputState.Provider
         value={{
-        input,
-        inputHandler,
+        myPath,
+        pathHandler,
         fileTree,
         fileTreeHandler,
         chosenFile,

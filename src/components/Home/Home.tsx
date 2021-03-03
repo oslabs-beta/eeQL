@@ -10,46 +10,58 @@ const path = require('path');
 const { remote } = window.require('electron');
 const fs = remote.require('fs')
 let current: string = '';
-let readDir;
-let fileTree = [];
-
+let filterArray;
+let fileArray;
 
 const Home = () => {
-    // destructuring state/useState methods from Context
-    const { fileTreeHandler, pathHandler }: any = useContext(InputState);
-    const fileTreeCreator = () => {
+    const { fileTreeHandler, pathHandler, fileTree, myPath }: any = useContext(InputState);
     const getFilePath = () => {
         remote.dialog
         .showOpenDialog({properties: ['openDirectory'],
         message: 'Please choose your project folder'})
         .then((files: any) => {
             if (!files.cancelled) {
-            current = files.filePaths[0];
-            getDirectory(current)
+                pathHandler(files.filePaths[0]);
+                current = files.filePaths[0]
+                console.log(current)
+                generateFileTree(current)
             }
         })
     }
-    getFilePath()
-    let getDirectory = (current) => {
-        const filterArray = fs.readdirSync(current).filter(file => file !== 'node_modules' && file[0] !== '.');
-        fileTree = filterArray
-        console.log('filepath', current)
-        console.log('array of files', filterArray)
-        fileSorter()
+      const generateFileTree = (dir) => {
+        let getDirectory = (current) => {
+            filterArray = fs.readdirSync(current).filter(file => file !== 'node_modules' && file[0] !== '.');
+            if (filterArray.filter((file, i) => !file.includes('')) == []) {
+                return filterArray 
+            } 
         }
-
-    let fileSorter = () => {
-        console.log(fileTree.filter(file => !file.includes('.'))
-    }
-    
-}
-
+        getDirectory(dir)
+        fileArray = filterArray.map(
+          (fileName: string) => {
+            let filePath = dir
+            filePath = `${filePath}/${fileName}`;
+            const file: any = {
+              filePath,
+              fileName,
+              files: [],
+            };
+              if (!file.fileName.includes('.')) {
+                file.files = generateFileTree(file.filePath);
+              }
+            return file;
+          },
+        );
+        return fileArray;
+      };
     return (
         <div>
-            <button onClick={fileTreeCreator}>test</button>
+            {/* <label className="form-label" htmlFor="customFile">Default file input example</label>
+            <input type="file" className="form-control" id="customFile" /> */}
+            <button onClick={getFilePath}>test</button>
+            <button onClick={() => fileTreeHandler(fileArray)}>set</button>
+            <button onClick={() => console.log(fileTree)}>get</button>
         </div>
     )
-
 }
 
 export default Home;
