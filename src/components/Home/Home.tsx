@@ -38,26 +38,24 @@ const Home = () => {
             .then((files: any) => {
                 if (files.cancelled == 'false') {
                 current = files.filePaths[0];
-                readDirectory(current);
                 }
             })
         }
         getFilePath();
-        const readDirectory = (path) => {
-            new Promise((resolve, reject) => {
-                readDir = fs.readdir(path, (err, filenames) => err !== null ? reject(err) : resolve(filenames))
-            })
-            console.log(readDir)
-         }
-
-        return
     }
+    const pathFinder = (path) => {
+        new Promise((resolve, reject) => {
+            readDir = fs.readdir(path, (err, filenames) => err !== null ? reject(err) : resolve(filenames))
+        })
+        console.log(readDir)
+     }
 
     return (
         <div>
             {/* <button onClick={getFilePath}>file</button>
             <button onClick={readDirectory}>read</button> */}
             <button onClick={test}>test</button>
+            <button onClick={pathFinder}>test</button>
         </div>
     )
 
