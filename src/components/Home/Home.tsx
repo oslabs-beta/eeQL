@@ -3,23 +3,19 @@
 
 import React, { useContext } from 'react';
 import { InputState } from '../../provider/CodeProvider';
-const fs = require ('fs');
+// const fs = require ('fs');
 
 const path = require('path');
 const { remote } = window.require('electron');
-const { fileSystem } = remote.require('fs')
+const fs = remote.require('fs')
 let current: string = '';
 let readDir;
-let filterArray: Array<string> = [];
 
 
 const Home = () => {
     // destructuring state/useState methods from Context
     const { fileTreeHandler, pathHandler }: any = useContext(InputState);
-
-    const readDirectory = async () => {
-       readDir = await fs.readdirSync(current)
-    }
+    const fileTree = () => {
     const getFilePath = () => {
         remote.dialog
         .showOpenDialog({properties: ['openDirectory'],
@@ -27,35 +23,22 @@ const Home = () => {
         .then((files: any) => {
             if (!files.cancelled) {
             current = files.filePaths[0];
+            getDirectory()
             }
         })
     }
-    async function test() {
-        const getFilePath = () => {
-            remote.dialog
-            .showOpenDialog({properties: ['openDirectory'],
-            message: 'Please choose your project folder'})
-            .then((files: any) => {
-                if (files.cancelled == 'false') {
-                current = files.filePaths[0];
-                }
-            })
+    getFilePath()
+    let getDirectory = () => {
+        const filterArray = fs.readdirSync(current)
+        console.log('filepath', current)
+        console.log('array of files', filterArray)
         }
-        getFilePath();
-    }
-    const pathFinder = (path) => {
-        new Promise((resolve, reject) => {
-            readDir = fs.readdir(path, (err, filenames) => err !== null ? reject(err) : resolve(filenames))
-        })
-        console.log(readDir)
-     }
-
+}
     return (
         <div>
             {/* <button onClick={getFilePath}>file</button>
             <button onClick={readDirectory}>read</button> */}
-            <button onClick={test}>test</button>
-            <button onClick={pathFinder}>test</button>
+            <button onClick={fileTree}>test</button>
         </div>
     )
 
