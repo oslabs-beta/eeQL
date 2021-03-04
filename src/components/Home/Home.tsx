@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { render } from 'react-dom';
 import { InputState } from '../../provider/CodeProvider';
 // const fs = require ('fs');
+import FileDirectory from '../FileDirectory/FileDirectory'
 
 const path = require('path');
 const { remote } = window.require('electron');
@@ -14,7 +15,7 @@ let filterArray;
 let fileArray;
 
 const Home = () => {
-    const { fileTreeHandler, pathHandler, fileTree, myPath }: any = useContext(InputState);
+    const { fileTreeHandler, pathHandler, fileTree}: any = useContext(InputState);
     const getFilePath = () => {
         remote.dialog
         .showOpenDialog({properties: ['openDirectory'],
@@ -23,7 +24,6 @@ const Home = () => {
             if (!files.cancelled) {
                 pathHandler(files.filePaths[0]);
                 current = files.filePaths[0]
-                console.log(current)
                 generateFileTree(current)
             }
         })
@@ -55,11 +55,13 @@ const Home = () => {
       };
     return (
         <div>
-            {/* <label className="form-label" htmlFor="customFile">Default file input example</label>
-            <input type="file" className="form-control" id="customFile" /> */}
-            <button onClick={getFilePath}>test</button>
+            <label className="form-label" htmlFor="customFile">Upload Project</label>
+            {/* <input type="file"  id="customFile" onClick={getFilePath}/> */}
+            <button className="form-control" onClick={getFilePath}>upload project</button>
             <button onClick={() => fileTreeHandler(fileArray)}>set</button>
-            <button onClick={() => console.log(fileTree)}>get</button>
+            <button onClick={() => console.log(typeof fileTree)}>get</button>
+            <FileDirectory></FileDirectory>
+            {/* <div>{fileTree}</div> */}
         </div>
     )
 }

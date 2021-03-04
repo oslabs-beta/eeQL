@@ -5,7 +5,6 @@ import CodeEditor from '../../eeQL/src/components/CodeEditor/CodeEditor'
 
 const App = () => (
       <div>
-         <CodeEditor/>
          <Switch>
             <Route exact path='/' component={Home} />
          </Switch>
