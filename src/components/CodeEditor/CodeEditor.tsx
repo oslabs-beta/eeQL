@@ -2,14 +2,13 @@ import './CodeEditor.scss'
 import React, {useContext, useEffect, useState} from 'react';
 import { StateContext } from '../../provider/StateProvider';
 import MonacoEditor from 'react-monaco-editor';
-
+import options from './options'
 const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
 const CodeEditor = () => {
     //from our glabal state
     const { activeFile, fileTree }: any = useContext(StateContext);
-
 
     //local state
     const [getContents, setContents] = useState('');
@@ -22,17 +21,9 @@ const CodeEditor = () => {
         getFileContents(activeFile);
         [activeFile, fileTree]
     })
-    const options: any = {
-    selectOnLineNumbers: true,
-    autoIndent: true,
-    colorDecorators: true,
-    wrappingIndent: 'indent',
-    wordWrap: 'bounded',
-    automaticLayout: true,
-    }
   return (
-      <div id = 'editor'>
-          <header id = "editor Header" > editor</header>
+      <div id='code-editor-head'>
+          <header> editor</header>
           <MonacoEditor
           height="74vh"
           language="javascript"

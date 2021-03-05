@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { StateContext } from '../../provider/StateProvider';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import FileTree from '../FileTree/FileTree'
+import './FileUpload.scss'
 
 const { remote } = window.require('electron');
 const fs = remote.require('fs')
@@ -48,11 +49,9 @@ const FileUpload = () => {
       };
     
   return (
-        <div>
+        <div id='file-upload-head'>
             <label className="form-label" htmlFor="customFile">Upload Project</label>
             <button className="form-control" onClick={getPath}>upload project</button>
-            <FileTree></FileTree>
-            <CodeEditor></CodeEditor>
         </div>
     )
 }

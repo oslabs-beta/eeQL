@@ -1,12 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import FileUpload from './components/FileUpload/FileUpload'
-import CodeEditor from '../../eeQL/src/components/CodeEditor/CodeEditor'
+import Home from './components/Home/Home'
 
 const App = () => (
       <div>
          <Switch>
-            <Route exact path='/' component={FileUpload} />
+            <Route exact path='/' component={Home} />
          </Switch>
       </div>
 );

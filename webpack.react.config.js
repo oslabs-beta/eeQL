@@ -21,8 +21,9 @@ module.exports = {
     publicPath: '/',
   },
 
+// switched target from node to electron renderer. Was receiving errors in monaco client
+  target: 'electron-renderer',
 // describe compilation environment
-  target: 'node',
 // resolve missing extensions and allow import of node modules
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],

@@ -40,12 +40,12 @@ const FileTree = () => {
   });
   if (userPath.length > 1) {
     return (
-    <div>
+    <div id='file-tree-head'>
       <div>{projectName}</div>
       {createTree(fileTree)}
     </div>)
   } else return (
-      <div>
+      <div id='file-tree-head'>
         no files uploaded
       </div>) 
 };
