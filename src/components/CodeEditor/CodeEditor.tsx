@@ -1,17 +1,14 @@
 import './CodeEditor.scss'
 import React, {useContext, useEffect, useState} from 'react';
-import {InputState} from '../../provider/CodeProvider';
+import { StateContext } from '../../provider/StateProvider';
 import MonacoEditor from 'react-monaco-editor';
-
 
 const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
-let exFileTree = ["readme.md", ['src',['components', ['Home',['Home.scss','Home.tsx']]]]]
-
 const CodeEditor = () => {
     //from our glabal state
-    const { chosenFile, fileTree }: any = useContext(InputState);
+    const { activeFile, fileTree }: any = useContext(StateContext);
 
 
     //local state
@@ -22,8 +19,8 @@ const CodeEditor = () => {
         }
     }
     useEffect(()=> {
-        getFileContents(chosenFile);
-        [chosenFile, fileTree]
+        getFileContents(activeFile);
+        [activeFile, fileTree]
     })
     const options: any = {
     selectOnLineNumbers: true,
