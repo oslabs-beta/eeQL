@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { StateContext } from '../../provider/StateProvider';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import FileTree from '../FileTree/FileTree'
+import { Button } from 'semantic-ui-react'
 import './FileUpload.scss'
 
 const { remote } = window.require('electron');
@@ -50,8 +51,7 @@ const FileUpload = () => {
     
   return (
         <div id='file-upload-head'>
-            <label className="form-label" htmlFor="customFile">Upload Project</label>
-            <button className="form-control" onClick={getPath}>upload project</button>
+            <button className="ui toggle button" aria-pressed="false" onClick={getPath}>upload</button>
         </div>
     )
 }

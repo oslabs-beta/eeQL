@@ -6,6 +6,10 @@ export const StateContext = React.createContext({});
 const StateProvider = ({ children }: any) => {
 
   // update and set state for user active chosen file
+    const [activePort, setActivePort] = useState('')
+    const activePortHandler = (port: string): void => {
+      setActivePort(port)
+    }
     const [activeFile, setActiveFile] = useState('');
     const activeFileHandler = (chosen: string): void => { 
       setActiveFile(chosen) };
@@ -26,7 +30,8 @@ const StateProvider = ({ children }: any) => {
 
   // return a wrapped component with the values of state and the functions to change them.
 return (
-    <StateContext.Provider value = {{  
+    <StateContext.Provider value = {{ 
+        activePort, activePortHandler, 
         userPath, pathHandler,
         fileTree, fileTreeHandler,
         activeFile, activeFileHandler,

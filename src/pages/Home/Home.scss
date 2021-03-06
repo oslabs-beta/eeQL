@@ -167,7 +167,7 @@
         visibility: hidden;
     }
     .react-grid-item.react-grid-placeholder {
-        background: red;
+        background: rgb(58, 58, 58);
         opacity: 0.2;
         transition-duration: 100ms;
         z-index: 2;
@@ -238,7 +238,7 @@
   }
 
   .react-grid-layout {
-    position: relative;
+    margin: auto;
     transition: height 200ms ease;
   }
   .react-grid-item {
@@ -350,5 +350,13 @@
   .react-grid-item > .react-resizable-handle.react-resizable-handle-s {
     bottom: 0;
     transform: rotate(45deg);
+  }
+
+  .grid-border {
+    margin: 30px !important;
+  }
+
+  .home-border {
+    margin: 30px !important;
   }
   
