@@ -1,0 +1,23 @@
+#landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+    width: 100vw;
+}
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 400px;
+    height: 140px;
+}
+
+.input {
+    margin-top: 15px;
+    text-align: center;
+}
+
+
