@@ -33,7 +33,7 @@ const Home = () => {
           h: 18.5,
           minW: 1, 
           maxW: 1,
-          static: false,
+          static: true,
         }}>
           <CodeEditor/>
         </div>
