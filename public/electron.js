@@ -14,8 +14,8 @@ function newWindow() {
     // eeql-blue
     backgroundColor: '##1c90f5',
     // starting dimensions of new window
-    height: 800,
-    width: 800,
+    height: 840,
+    width: 1200,
     // allow integration of node modules in build.
     webPreferences: { nodeIntegration: true },
   });

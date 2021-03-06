@@ -27,7 +27,7 @@ const CodeEditor = () => {
           <MonacoEditor
           height="74vh"
           language="javascript"
-          theme="light-dark"
+          theme="vs-dark"
           options={options}
           value={getContents}
         />
