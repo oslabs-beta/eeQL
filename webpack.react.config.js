@@ -3,7 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const monacoEditor = path.resolve(__dirname, './node_modules/monaco-editor');
-
+const semanticUI = path.resolve(
+  __dirname,
+  './node_modules/semantic-ui-react',
+);
 
 module.exports = {
   entry: './src/index.js',
@@ -21,8 +24,9 @@ module.exports = {
     publicPath: '/',
   },
 
+// switched target from node to electron renderer. Was receiving errors in monaco client
+  target: 'electron-renderer',
 // describe compilation environment
-  target: 'web',
 // resolve missing extensions and allow import of node modules
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],
@@ -58,7 +62,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: monacoEditor,
+        include: [monacoEditor, semanticUI],
         use: ['style-loader', 'css-loader']
       },
 

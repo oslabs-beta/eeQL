@@ -3,16 +3,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import CodeProvider from './provider/CodeProvider.tsx';
+import StateProvider from './provider/StateProvider.tsx';
 import App from './App';
 
 ReactDom.render(
   // providing hashrouter for electron static application
   // need to add providers here v
   <HashRouter>
-    <CodeProvider>
+    <StateProvider>
         <App />
-    </CodeProvider>
+    </StateProvider>
   </HashRouter>,
   document.getElementById('root'),
 );
