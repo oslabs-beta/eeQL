@@ -4,15 +4,18 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import StateProvider from './provider/StateProvider.tsx';
+import TestProvider from './provider/TestProvider.tsx';
 import App from './App';
 
 ReactDom.render(
   // providing hashrouter for electron static application
   // need to add providers here v
   <HashRouter>
+    <TestProvider>
     <StateProvider>
         <App />
     </StateProvider>
+    </TestProvider>
   </HashRouter>,
   document.getElementById('root'),
 );
