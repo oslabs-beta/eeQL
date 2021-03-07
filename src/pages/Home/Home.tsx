@@ -5,6 +5,7 @@ import "./Home.scss"
 import CodeEditor from '../../components/CodeEditor/CodeEditor';
 import FileTree from '../../components/FileTree/FileTree';
 import NavBar from '../../components/NavBar/NavBar'
+import TestBuilder from '../../components/TestSuite/TestBuilder/TestBuilder'
 
 
 const Home = () => {
@@ -23,6 +24,17 @@ const Home = () => {
           static: true,
         }}>
           <FileTree/>
+        </div>
+        <div 
+        key="b" 
+        data-grid={{
+          x: 1, 
+          y: 0, 
+          w: 1, 
+          h: 18, 
+          static: true,
+        }}>
+          <TestBuilder/>
         </div>
         <div 
         key="c" 
