@@ -8,6 +8,8 @@ export const TestContext = React.createContext({});
 const TestProviders = ({ children }: any) => {
   const [test, setTest] = useState({});
 
+  const [monaco, monacoPoster] = useState('');
+
   //handler for all states with  k-v's that are added/updated
   const testHandler = (altKey: string, altValue: any) => {
     console.log(altKey, altValue);
@@ -19,6 +21,8 @@ const TestProviders = ({ children }: any) => {
       value={{
         test,
         testHandler,
+        monaco,
+        monacoPoster
       }}
     >
       {children}
