@@ -5,12 +5,13 @@ import MonacoEditor from 'react-monaco-editor';
 import options from './options'
 const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
+import { TestContext } from "../../provider/TestProvider";
 
 const CodeEditor = () => {
     //from our glabal state
     const { activeFile, fileTree }: any = useContext(StateContext);
-
-    //local state
+    const {monaco, monacoPoster}:any = useContext(TestContext)  
+     //local state
     const [getContents, setContents] = useState('');
     const getFileContents = (path: String) => {
         if (path.length > 0){
@@ -21,6 +22,8 @@ const CodeEditor = () => {
         getFileContents(activeFile);
         [activeFile, fileTree]
     })
+
+    
   return (
       <div id='code-editor-head'>
           <header> editor</header>
@@ -29,8 +32,11 @@ const CodeEditor = () => {
           language="javascript"
           theme="vs-dark"
           options={options}
-          value={getContents}
+        //   value={getContents}
+        defaultValue = {getContents}
+          value = {monaco}
         />
+        {/* <button onClick = {addTest} >add test</button> */}
       </div>
   )
 }
