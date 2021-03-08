@@ -1,19 +1,26 @@
 /* Dropdown Button */
 .dropbtn {
-    color: white;
+    color: #1e1e21;
     font-size: 12px;
     border: none;
-
+    background-color: #1e1e21;
   }
-  
+.port {
+  text-align: right;
+  color: #ffffff;
+
+
+}
+
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
-    display: inline-block;
+    display: inline !important;
   }
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
+    border-radius: 4px;
     display: none;
     position: absolute;
     background-color: #32c2b5;
@@ -24,11 +31,12 @@
   
   /* Links inside the dropdown */
   .dropdown-content a {
-    color: #83e8df;
+    color: #1e1e21;
     padding: 12px 16px;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     display: block;
+    border-radius: 3px;
   }
   
   /* Change color of dropdown links on hover */

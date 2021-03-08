@@ -26,13 +26,13 @@
     "_"
   ],
   "scripts": {
+    "e-build": "electron-builder",
     "prod": "npm run p-react && npm run p-electron",
     "p-react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
     "p-electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
     "dev": " concurrently \"npm run d-electron\" \"npm run d-react\"",
     "d-react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
-    "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
-    "e-build": "electron-builder"
+    "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\""
   },
   "build": {
     "directories": {
@@ -130,17 +130,19 @@
     "bootstrap": "^5.0.0-beta2",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
+    "d3": "^5.16.0",
+    "d3-scale": "^3.2.3",
     "monaco-editor": "^0.21.2",
     "monaco-editor-electron": "^1.0.6",
     "monaco-editor-webpack-plugin": "^2.1.0",
     "react": "^16.13.1",
+    "react-awesome-button": "^6.5.1",
+    "react-d3-graph": "^2.6.0",
     "react-dom": "^16.13.1",
     "react-grid-layout": "^1.2.2",
     "react-monaco-editor": "^0.41.2",
     "react-resizable": "^1.11.1",
     "react-router-dom": "^5.2.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3",
     "styled-components": "^5.2.1"
   }
 }
