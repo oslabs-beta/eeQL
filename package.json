@@ -21,9 +21,8 @@
   "contributors": [
     "Ramtin Khoee",
     "Kimberley Spicer",
-    "_",
-    "_",
-    "_"
+    "Abu Fofanah",
+    "Jason Speare"
   ],
   "scripts": {
     "e-build": "electron-builder",
@@ -32,7 +31,17 @@
     "p-electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
     "dev": " concurrently \"npm run d-electron\" \"npm run d-react\"",
     "d-react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+<<<<<<< HEAD
     "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\""
+=======
+    "d-electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
+    "e-build": "electron-builder",
+    "test": "jest --verbose"
+  },
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js"
+>>>>>>> main
   },
   "build": {
     "directories": {

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TestContext } from "../../../provider/TestProvider";
+import { StateContext } from "../../../provider/StateProvider";
 import './TestBuilder.scss'
 // import {ReactDOM, render} from 'react-dom'
 
 const TestBuilder = () => {
-  const { test, testHandler }: any = useContext(TestContext);
+  const { test, testHandler, monaco, monacoPoster }: any = useContext(TestContext);
+  const { activePort }: any = useContext(StateContext)
 
   const dataTypes = ["Array", "Integer", "String"];
   const dataTypeOptions = [];
@@ -16,7 +18,8 @@ const TestBuilder = () => {
     );
   }
 
-  const methods = ["get", "post", "put", "delete"];
+  //Capitalized all methods
+  const methods = ["GET", "POST", "PUT", "DELETE"];
   const methodOptions = [];
   for (let a = 0; a < methods.length; a++) {
     methodOptions.push(
@@ -57,6 +60,7 @@ const TestBuilder = () => {
     }
 
     console.log(test);
+    console.log('monaco', monaco)
     // localhandler(state);
     // console.log("local localHandler", localhandler(+1));
     // console.log("gloabl state", state);
@@ -98,17 +102,41 @@ const TestBuilder = () => {
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     testHandler(e.target.id, (e.target as HTMLInputElement).value);
   };
+  
+  let testVar = `describe( ${test}, ()=>{
+    it (${test.expectedRes}, (done) => {
+       //request
+       request(${activePort})
+        //post method
+        .post(${test.serverApp})
+        //send  method
+        .send(value is equivalent to ${test})
+        //expect method
+        .expect(res.status).to.be.equal(200)
+        //done method
+        .done()
+    })
+  })`
 
   return (
+<<<<<<< HEAD
     <div className='test-builder'>
       <h3>server/application</h3>
+=======
+    <div>
+      <h3>Please enter your server/application file name:</h3>
+>>>>>>> main
       <input
         // type="text"
         id="serverApp"
         // value={state.serverApp}
         onChange={inputHandler}
       ></input>
+<<<<<<< HEAD
       <h3>expected result:</h3>
+=======
+      <h3>Please describe your expected result:</h3>
+>>>>>>> main
       <input
         // type="text"
         id="expectedRes"
@@ -118,7 +146,11 @@ const TestBuilder = () => {
       <br></br>
 
       {/* method dropdown */}
+<<<<<<< HEAD
       <h3>desired HTTP method</h3>
+=======
+      <h3>Please enter the desired HTTP method:</h3>
+>>>>>>> main
       <select
         // defaultValue={methodOptions}
         id="methodSelect"
@@ -184,7 +216,14 @@ const TestBuilder = () => {
       ></input>
 
       <br></br>
+<<<<<<< HEAD
       <h3>header information: </h3>
+=======
+
+      {/* should be a dropdown since there are only a few standard headers
+        maybe there can be an "other" selection which will trigger users to be able to write in their desired header type? */}
+      <h3>Please enter header information: </h3>
+>>>>>>> main
       <input
         // type="text"
         id="headerInfo"
@@ -201,7 +240,7 @@ const TestBuilder = () => {
       >
         Build
       </button>
-
+      <button onClick = {() => monacoPoster(testVar)}>update</button>
       {/* delete button 
       <button className= "deleteTestButton" onClick = {this.handleClick} > Select</button> */}
 
