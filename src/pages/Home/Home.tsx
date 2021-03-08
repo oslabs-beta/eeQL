@@ -26,7 +26,7 @@ const Home = () => {
           x: 0, 
           y: 0, 
           w: 1, 
-          h: 18, 
+          h: 15, 
           static: true,
         }}>
           <FileTree/>
@@ -37,7 +37,7 @@ const Home = () => {
           x: 1, 
           y: 0, 
           w: 1, 
-          h: 18, 
+          h: 15, 
           static: true,
         }}>
           <TestBuilder/>
@@ -48,7 +48,7 @@ const Home = () => {
           x: 2, 
           y: 0, 
           w: 1, 
-          h: 18.5,
+          h: 15,
           minW: 1, 
           maxW: 1,
           static: true,
