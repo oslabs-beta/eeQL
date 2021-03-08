@@ -150,7 +150,7 @@ const TestBuilder = () => {
       <br></br>
 
       {/* Endpoint input */}
-      <h3>Please enter your desired endpoint</h3>
+      <h3>desired endpoint</h3>
       <input
         // // type="text"
         id="desiredEndpoint"
@@ -159,9 +159,9 @@ const TestBuilder = () => {
       ></input>
 
       <br></br>
-      <h3>Please enter your input data and expected output data: </h3>
+      <h3>input data and expected output data: </h3>
       {/* select value for input  */}
-      <label htmlFor="input"> Please select your input:</label>
+      <label htmlFor="input">input:</label>
       <select
         defaultValue={dataTypes[0]}
         id="choices1"
@@ -172,7 +172,7 @@ const TestBuilder = () => {
       </select>
 
       {/* input field for input data */}
-      <label> Please enter your input data:</label>
+      <label> input data:</label>
       <input
         // type="text"
         id="inputData"
@@ -183,7 +183,7 @@ const TestBuilder = () => {
       <br></br>
 
       {/* select value for output  */}
-      <label htmlFor="input"> Please select your output:</label>
+      <label htmlFor="input">output:</label>
       <select
         defaultValue={dataTypes[0]}
         id="choices2"
@@ -194,7 +194,7 @@ const TestBuilder = () => {
       </select>
 
       {/* input field for output data */}
-      <label> Please enter your expected output data:</label>
+      <label> expected output data:</label>
       <input
         // type="text"
         id="outputData"
@@ -221,7 +221,7 @@ const TestBuilder = () => {
         onClick={clicker}
         placeholder="Enter your expected result"
       >
-        Wooosh
+        Build
       </button>
       <button onClick = {() => monacoPoster(testVar)}>update</button>
       {/* delete button 
