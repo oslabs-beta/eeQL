@@ -223,7 +223,7 @@ const TestBuilder = () => {
       >
         Wooosh
       </button>
-      <button onClick = {monacoPoster(testVar)}>update</button>
+      <button onClick = {() => monacoPoster(testVar)}>update</button>
       {/* delete button 
       <button className= "deleteTestButton" onClick = {this.handleClick} > Select</button> */}
 
