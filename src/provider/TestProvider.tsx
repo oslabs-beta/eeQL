@@ -12,9 +12,13 @@ const TestProviders = ({ children }: any) => {
 
   //handler for all states with  k-v's that are added/updated
   const testHandler = (altKey: string, altValue: any) => {
-    console.log(altKey, altValue);
     setTest({ ...test, [altKey]: altValue });
+    console.log(altKey, altValue, 'updatedState: ',test);
   };
+
+  const resetHandler = () =>{
+    setTest({});
+  }
 
   return (
     <TestContext.Provider
@@ -22,7 +26,8 @@ const TestProviders = ({ children }: any) => {
         test,
         testHandler,
         monaco,
-        monacoPoster
+        monacoPoster,
+        resetHandler
       }}
     >
       {children}

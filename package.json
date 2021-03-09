@@ -125,6 +125,7 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@devexpress/dx-react-core": "2.7.5",
     "@devexpress/dx-react-grid": "2.7.5",
     "@devexpress/dx-react-grid-material-ui": "2.7.5",
@@ -136,6 +137,7 @@
     "cross-env": "^7.0.3",
     "d3": "^5.16.0",
     "d3-scale": "^3.2.3",
+    "graphql": "^15.5.0",
     "monaco-editor": "^0.21.2",
     "monaco-editor-electron": "^1.0.6",
     "monaco-editor-webpack-plugin": "^2.1.0",
