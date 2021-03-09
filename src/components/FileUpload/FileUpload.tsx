@@ -23,7 +23,12 @@ const FileUpload = () => {
     const { userPath, fileTreeHandler, pathHandler, fileTree}: any = useContext(StateContext);
     const { activePortHandler }: any = useContext(StateContext);
     const projectName = nameSetter(userPath.split('/'))
-
+    
+    
+    const exportTestFile = (dir) => {
+      if (!fs.existsSync(`${dir}/__tests__`))
+        fs.mkdirSync(`${dir}/__tests__`);
+    };
     const setPort = (e) => {
         e.preventDefault()
         console.log(e.target.value)
@@ -33,8 +38,9 @@ const FileUpload = () => {
           .showOpenDialog({ properties: ['openDirectory'], message: 'Please choose your project folder'})
           .then((files: any) => {
             if (!files.cancelled) {
+               current = files.filePaths[0];
+                exportTestFile(current);
                 pathHandler(files.filePaths[0]);
-                current = files.filePaths[0];
                 generateFileTree(current); }
               })
             }
@@ -64,7 +70,7 @@ const FileUpload = () => {
     return (
     <div id='file-upload-footer'>
         <div id='file-upload-head'>
-                <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
+                <Input placeholder='8080' className='port-input' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
                 <AwesomeButtonProgress 
                 type="secondary"
                 ripple={true}

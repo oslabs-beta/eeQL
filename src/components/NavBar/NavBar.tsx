@@ -12,7 +12,7 @@ const NavBar = () => {
     return (
         <div className="dropdown"> 
 
-                <Link to='/'><button className="dropbtn"><img src={logo} alt="eeql_logo" width='60' height='60'/></button></Link>
+                <Link to='/'><button className="dropbtn"><img src={logo} alt="eeql_logo" width='100' height='100'/></button></Link>
                 <FileUpdate />
                 <PortUpdate />
       </div>

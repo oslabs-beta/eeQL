@@ -25,9 +25,10 @@ const CodeEditor = () => {
 
   return (
       <div id='code-editor-head'>
+          <div></div>
           {/* <header>editor</header> */}
           <MonacoEditor
-          height="60vh"
+          height="50vh"
           width="30vw"
           language="javascript"
           theme="vs-dark"

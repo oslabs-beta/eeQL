@@ -4,10 +4,11 @@ import { StateContext } from "../../../provider/StateProvider";
 import './TestBuilder.scss'
 import RestEndpoint from "../RestEndpoint/RestEndpoint"
 // import {ReactDOM, render} from 'react-dom'
+// @ts-ignore
+import { AwesomeButton, AwesomeButtonProgress } from 'react-awesome-button';
 
 const { remote } = window.require('electron');
 const fs = remote.require('fs')
-
 const TestBuilder = () => {
   const { test, testHandler, resetHandler }: any = useContext(TestContext);
   const { activePort, activeFile, activeFileHandler }: any = useContext(StateContext)
@@ -51,23 +52,48 @@ const TestBuilder = () => {
       <RestEndpoint/>
       <br></br>
       {/* Console.log result of test */}
-      <button
-        type="button"
-        className="choices"
-        onClick={clicker}
-        placeholder="Enter your expected result"
+      <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={clicker}
       >
-        Build
-      </button>
+        BUILD
+      </AwesomeButton>
 
       {/* Update/Preview Test */}
-      <button onClick = {() => activeFileHandler()}>Update</button>
-
+      <AwesomeButton
+        size='small' 
+        type="secondary"
+        ripple={true}
+        onPress={() => activeFileHandler()}
+      >
+        UPDATE
+      </AwesomeButton>
       {/* Reset button  */}
-      <button className= "resetTestButton" onClick = {resetHandler}>Reset</button>
-
+      <AwesomeButton
+        size='small' 
+        type="link"
+        ripple={true}
+        onPress={resetHandler}
+      >
+        RESET
+      </AwesomeButton>
       {/* save button  */}
-      <button className= "saveTestButton" onClick = {()=>console.log("Saving File...")} >Save</button>
+      <AwesomeButtonProgress
+        size='small' 
+        type="Primary"
+        ripple={true}
+        loadingLabel='...'
+        resultLabel='✓'
+        action={(element, next) => {
+          console.log('clicked');
+          setTimeout(() => {
+            next();
+          }, 600);}}
+      >
+        SAVE
+      </AwesomeButtonProgress>
       {/* fs.writeFileSync(
       `projectDirectory/__tests__/.insertFileNameHere.test.js`,
       stringRepresentationOfTest,

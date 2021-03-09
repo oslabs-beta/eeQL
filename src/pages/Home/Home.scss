@@ -355,15 +355,14 @@
   .grid-border {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: space-evenly;
-    align-items: stretch;
+
   }
   .home-border {
     margin: 40px !important;
-    flex-grow: 2;
+    // flex-grow: 2;
     background-color: #1e1e21;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
   }
-
