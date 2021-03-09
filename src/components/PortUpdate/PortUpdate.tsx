@@ -34,7 +34,6 @@ const PortUpdate = () => {
 if (newPort === false) return (
     <div id='port-update-footer'>
         <div id='file-update-head'>
-                {/* <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />   */}
                 <AwesomeButton 
                 size='small'
                 type="link"
@@ -48,14 +47,6 @@ if (newPort === false) return (
 else return (
     <div id='port-update-footer'>
     <div id='file-update-head'>
-            {/* <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />   */}
-            {/* <AwesomeButton 
-            size='small'
-            type="link"
-            ripple={true}
-            onPress={updatePort}>
-            {activePort}
-            </AwesomeButton> */}
             <Input placeholder='8080 ' type='number' onChange={(e) => updatePort(e)} inputProps={{ 'aria-label': 'description' }} />  
             <AwesomeButton 
                 size='small'
@@ -63,7 +54,7 @@ else return (
                 ripple={true}
                 onPress={submitPort}>
                 ✓
-                </AwesomeButton>
+            </AwesomeButton>
     </div>
 </div>
 )

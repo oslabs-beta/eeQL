@@ -3,7 +3,6 @@
 
 import React, { useContext, useState } from 'react';
 import { StateContext } from '../../provider/StateProvider';
-import Input from '@material-ui/core/Input';
 import { Link } from 'react-router-dom';
 // @ts-ignore
 import "react-awesome-button/dist/styles.scss";

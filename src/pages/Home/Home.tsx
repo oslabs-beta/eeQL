@@ -17,9 +17,10 @@ const Home = () => {
         <div className='home-border'>
         <NavBar></NavBar>
         <div className='grid-border'>
-          <FileTree/>
-          <TestBuilder/>
-          <CodeEditor/>
+          <div className='file'><FileTree/></div>
+          <div className='test'><TestBuilder/></div>
+          <div className='code'><CodeEditor/></div>
+
         </div>
       </div>
     )

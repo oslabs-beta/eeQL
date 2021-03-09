@@ -7,6 +7,7 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 import { TestContext } from "../../provider/TestProvider";
 
+
 const CodeEditor = () => {
     //from our glabal state
     const { activeFile, fileTree }: any = useContext(StateContext);
@@ -22,13 +23,12 @@ const CodeEditor = () => {
         [activeFile, fileTree]
     })
 
-    
   return (
       <div id='code-editor-head'>
           {/* <header>editor</header> */}
           <MonacoEditor
           height="60vh"
-          width="20vw"
+          width="30vw"
           language="javascript"
           theme="vs-dark"
           options={options}

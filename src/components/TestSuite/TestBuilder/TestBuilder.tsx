@@ -119,7 +119,7 @@ const TestBuilder = () => {
   })`
 
   return (
-    <div>
+    <div className='test-builder'>
       <h3>Please enter your server/application file name:</h3>
       <input
         // type="text"

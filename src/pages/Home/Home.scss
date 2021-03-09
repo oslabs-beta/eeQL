@@ -360,7 +360,8 @@
     align-items: stretch;
   }
   .home-border {
-    margin: 20px !important;
+    margin: 40px !important;
+    flex-grow: 2;
     background-color: #1e1e21;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
