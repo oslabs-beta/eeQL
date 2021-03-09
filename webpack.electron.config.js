@@ -21,13 +21,6 @@ module.exports = {
     // define type and loader method
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
         test: /\.(js|ts|tsx|jsx)$/,
         // exclude transpilations of node modules
         exclude: /node_modules/,

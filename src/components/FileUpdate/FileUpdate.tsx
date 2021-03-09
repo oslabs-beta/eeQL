@@ -3,13 +3,13 @@
 
 import React, { useContext, useState } from 'react';
 import { StateContext } from '../../provider/StateProvider';
-import Input from '../../../node_modules/@material-ui/core/Input';
+import Input from '@material-ui/core/Input';
 import { Link } from 'react-router-dom';
 // @ts-ignore
 import "react-awesome-button/dist/styles.scss";
-import './FileUpload.scss'
+import './FileUpdate.scss'
 // @ts-ignore
-import { AwesomeButton, AwesomeButtonProgress, AwesomeButtonSocial } from 'react-awesome-button';
+import { AwesomeButton, AwesomeButtonProgress } from 'react-awesome-button';
 
 const { remote } = window.require('electron');
 const fs = remote.require('fs')
@@ -18,7 +18,7 @@ let directoryArray;
 let fileArray;
 
 
-const FileUpload = () => {
+const FileUpdate = () => {
     function nameSetter(name) {return name[name.length - 1]};
     const { userPath, fileTreeHandler, pathHandler, fileTree}: any = useContext(StateContext);
     const { activePortHandler }: any = useContext(StateContext);
@@ -59,13 +59,12 @@ const FileUpload = () => {
           fileTreeHandler(fileArray)
           return fileArray;
       };
-    
-  if(fileArray) { 
     return (
     <div id='file-upload-footer'>
         <div id='file-upload-head'>
-                <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
+              
                 <AwesomeButtonProgress 
+                size='small'
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
@@ -76,49 +75,12 @@ const FileUpload = () => {
                 loadingLabel='...'
                 resultLabel={projectName}
                 >
-                UPLOAD
+                NEW
                 </AwesomeButtonProgress>
-                <AwesomeButton
-                onPress={getPath}
-                type='link'
-                >✗</AwesomeButton>
-                <Link to='/home'>
-                <AwesomeButton 
-                type="primary"
-                ripple={true}>
-                GO
-                </AwesomeButton>
-                </Link>
-        </div>
-  </div>
-    ) }
-  else return (
-    <div id='file-upload-footer'>
-        <div id='file-upload-head'>
-                <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
-                <AwesomeButtonProgress 
-                type="secondary"
-                ripple={true}
-                action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
-                loadingLabel='...'
-                resultLabel={projectName}
-                >
-                UPLOAD
-                </AwesomeButtonProgress>
-                <Link to='/home'>
-                <AwesomeButton 
-                type="primary"
-                ripple={true}>
-                GO
-                </AwesomeButton>
-                </Link>
+                {/* <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} /> */}
         </div>
   </div>
     )
 }
 
-export default FileUpload;
+export default FileUpdate;

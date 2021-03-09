@@ -353,13 +353,16 @@
   }
 
   .grid-border {
-    margin: 30px !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
   }
-
   .home-border {
     margin: 20px !important;
     background-color: #1e1e21;
-    // color: white;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
   }
 

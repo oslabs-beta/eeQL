@@ -10,7 +10,6 @@ import { TestContext } from "../../provider/TestProvider";
 const CodeEditor = () => {
     //from our glabal state
     const { activeFile, fileTree }: any = useContext(StateContext);
-    const {monaco, monacoPoster}:any = useContext(TestContext)  
      //local state
     const [getContents, setContents] = useState('');
     const getFileContents = (path: String) => {
@@ -26,17 +25,15 @@ const CodeEditor = () => {
     
   return (
       <div id='code-editor-head'>
-          <header> editor</header>
+          {/* <header>editor</header> */}
           <MonacoEditor
-          height="74vh"
+          height="60vh"
+          width="20vw"
           language="javascript"
           theme="vs-dark"
           options={options}
-        //   value={getContents}
-        defaultValue = {getContents}
-          value = {monaco}
+          value={getContents}
         />
-        {/* <button onClick = {addTest} >add test</button> */}
       </div>
   )
 }
