@@ -5,8 +5,8 @@ import './TestBuilder.scss'
 // import {ReactDOM, render} from 'react-dom'
 
 const TestBuilder = () => {
-  const { test, testHandler, monaco, monacoPoster }: any = useContext(TestContext);
-  const { activePort }: any = useContext(StateContext)
+  const { test, testHandler }: any = useContext(TestContext);
+  const { activePort, activeFile, setActiveFile }: any = useContext(StateContext)
 
   const dataTypes = ["Array", "Integer", "String"];
   const dataTypeOptions = [];
@@ -60,7 +60,7 @@ const TestBuilder = () => {
     }
 
     console.log(test);
-    console.log('monaco', monaco)
+    console.log('monaco', activeFile)
     // localhandler(state);
     // console.log("local localHandler", localhandler(+1));
     // console.log("gloabl state", state);
@@ -119,7 +119,7 @@ const TestBuilder = () => {
   })`
 
   return (
-    <div>
+    <div className='test-builder'>
       <h3>Please enter your server/application file name:</h3>
       <input
         // type="text"
@@ -223,7 +223,7 @@ const TestBuilder = () => {
       >
         Build
       </button>
-      <button onClick = {() => monacoPoster(testVar)}>update</button>
+      <button onClick = {() => setActiveFile(testVar)}>update</button>
       {/* delete button 
       <button className= "deleteTestButton" onClick = {this.handleClick} > Select</button> */}
 

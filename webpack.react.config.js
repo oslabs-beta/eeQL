@@ -71,6 +71,17 @@ module.exports = {
         loader: 'html-loader'
       },
       {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
+      {
         test: /\.tsx?$/,
         use: [{ loader: 'ts-loader', options: { happyPackMode: true }}]
       }
