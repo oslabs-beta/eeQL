@@ -90,7 +90,7 @@ const TestBuilder = () => {
           console.log('clicked');
           setTimeout(() => {
             next();
-          }, 600);}}
+          }, 1000);}}
       >
         SAVE
       </AwesomeButtonProgress>

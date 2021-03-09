@@ -64,9 +64,11 @@ const RestEndpoint = () => {
         {methodOptions}
       </select>
       {/* <Input placeholder='Select Server File' defaultValue={test.serverApp || ''} fullWidth={false} id="serverApp" type='text' onChange={inputHandler}/> */}
+            <div id='server-button'>
             <AwesomeButtonProgress 
                 type="secondary"
                 ripple={true}
+                
                 action={(element, next) => {
                     getPath()
                     setTimeout(() => {
@@ -79,6 +81,7 @@ const RestEndpoint = () => {
                 >
                 UPLOAD SERVER FILE
             </AwesomeButtonProgress>
+            </div>
                 {/* <AwesomeButton
                 onPress={getPath}
                 type='link'
