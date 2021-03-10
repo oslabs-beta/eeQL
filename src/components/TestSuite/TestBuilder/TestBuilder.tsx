@@ -3,6 +3,7 @@ import { TestContext } from "../../../provider/TestProvider";
 import { StateContext } from "../../../provider/StateProvider";
 import './TestBuilder.scss'
 import RestEndpoint from "../RestEndpoint/RestEndpoint"
+import GraphQl from '../GraphQLEndpoint/GraphQLEndpoint'
 import RestTestCreation from "../TestGeneration/RestTestCreation"
 // import {ReactDOM, render} from 'react-dom'
 // @ts-ignore
@@ -13,7 +14,7 @@ const fs = remote.require('fs')
 const TestBuilder = () => {
   const { test, testHandler, resetHandler }: any = useContext(TestContext);
   const { userPath, activePort, activeFile, activeFileHandler }: any = useContext(StateContext)
-  const [local, localhandler] = useState({});
+  const [local, localhandler] = useState(true);
 
   const clicker = () => {
     // gather current value from all fields.
@@ -60,8 +61,28 @@ const TestBuilder = () => {
       );
   }
 
-  return (
+  if (local){ return (
     <div className='test-builder'>
+      <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={ () =>
+          localhandler(true)
+        }
+      >
+        REST
+      </AwesomeButton>
+      <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={ () =>
+          localhandler(false)
+        }
+      >
+        GRAPHQL
+      </AwesomeButton>
       <RestEndpoint/>
       <br></br>
       {/* Console.log result of test */}
@@ -69,7 +90,12 @@ const TestBuilder = () => {
         size='small' 
         type="Primary"
         ripple={true}
-        onPress={clicker}
+        onPress={async () => {
+          let file = await fs.writeFileSync(
+          `${userPath}/__tests__/test.js`,
+          RestTestCreation(test));
+          activeFileHandler(`${userPath}/__tests__/test.js`)
+        }}
       >
         BUILD
       </AwesomeButton>
@@ -110,6 +136,85 @@ const TestBuilder = () => {
       </AwesomeButtonProgress>
     </div>
   );
+}
+else {
+  return (
+    <div className='test-builder'>
+            <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={ () =>
+          localhandler(true)
+        }
+      >
+        REST
+      </AwesomeButton>
+      <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={ () =>
+          localhandler(false)
+        }
+      >
+        GRAPHQL
+      </AwesomeButton>
+      <GraphQl/>
+      <br></br>
+      {/* Console.log result of test */}
+      <AwesomeButton
+        size='small' 
+        type="Primary"
+        ripple={true}
+        onPress={async () => {
+          let file = await fs.writeFileSync(
+          `${userPath}/__tests__/test.js`,
+          RestTestCreation(test));
+          activeFileHandler(`${userPath}/__tests__/test.js`)
+        }}
+      >
+        BUILD
+      </AwesomeButton>
+
+      {/* Update/Preview Test */}
+      <AwesomeButton
+        size='small' 
+        type="secondary"
+        ripple={true}
+        onPress={() => activeFileHandler()}
+      >
+        UPDATE
+      </AwesomeButton>
+      {/* Reset button  */}
+      <AwesomeButton
+        size='small' 
+        type="link"
+        ripple={true}
+        onPress={resetHandler}
+      >
+        RESET
+      </AwesomeButton>
+      {/* save button  */}
+      <AwesomeButtonProgress
+        size='small' 
+        type="Primary"
+        ripple={true}
+        loadingLabel='...'
+        resultLabel='✓'
+        action={(element, next) => {
+          console.log('Saving Test...');
+          handleSaveTest();
+          setTimeout(() => {
+            next();
+          }, 1000);}}
+      >
+        SAVE
+      </AwesomeButtonProgress>
+    </div>
+  );
+
+}
 };
 
 export default TestBuilder;
