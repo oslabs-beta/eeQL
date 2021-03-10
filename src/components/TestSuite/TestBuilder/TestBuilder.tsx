@@ -3,6 +3,7 @@ import { TestContext } from "../../../provider/TestProvider";
 import { StateContext } from "../../../provider/StateProvider";
 import './TestBuilder.scss'
 import RestEndpoint from "../RestEndpoint/RestEndpoint"
+import RestTestCreation from "../TestGeneration/RestTestCreation"
 // import {ReactDOM, render} from 'react-dom'
 // @ts-ignore
 import { AwesomeButton, AwesomeButtonProgress } from 'react-awesome-button';
@@ -11,7 +12,7 @@ const { remote } = window.require('electron');
 const fs = remote.require('fs')
 const TestBuilder = () => {
   const { test, testHandler, resetHandler }: any = useContext(TestContext);
-  const { activePort, activeFile, activeFileHandler }: any = useContext(StateContext)
+  const { userPath, activePort, activeFile, activeFileHandler }: any = useContext(StateContext)
   const [local, localhandler] = useState({});
 
   const clicker = () => {
@@ -46,6 +47,18 @@ const TestBuilder = () => {
     console.log(test);
     console.log('monaco', activeFile)
   };
+
+  const handleSaveTest = () => {
+    const restTest = RestTestCreation(test)
+    console.log(restTest);
+    fs.writeFileSync(
+      `${userPath}/__tests__/insertFileNameHere.test.js`,
+      restTest,
+      {
+        encoding: "utf8",
+      }
+      );
+  }
 
   return (
     <div className='test-builder'>
@@ -87,17 +100,14 @@ const TestBuilder = () => {
         loadingLabel='...'
         resultLabel='✓'
         action={(element, next) => {
-          console.log('clicked');
+          console.log('Saving Test...');
+          handleSaveTest();
           setTimeout(() => {
             next();
           }, 1000);}}
       >
         SAVE
       </AwesomeButtonProgress>
-      {/* fs.writeFileSync(
-      `projectDirectory/__tests__/.insertFileNameHere.test.js`,
-      stringRepresentationOfTest,
-    ); */}
     </div>
   );
 };
