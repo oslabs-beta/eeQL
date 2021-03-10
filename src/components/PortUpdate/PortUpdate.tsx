@@ -36,7 +36,7 @@ if (newPort === false) return (
         <div id='file-update-head'>
                 <AwesomeButton 
                 size='small'
-                type="link"
+                type="primary"
                 ripple={true}
                 onPress={updatePort}>
                 {activePort}
@@ -47,7 +47,7 @@ if (newPort === false) return (
 else return (
     <div id='port-update-footer'>
     <div id='file-update-head'>
-            <Input placeholder='8080 ' type='number' onChange={(e) => updatePort(e)} inputProps={{ 'aria-label': 'description' }} />  
+            <Input placeholder='8080' className='port-input' type='number' onChange={(e) => updatePort(e)} inputProps={{ 'aria-label': 'description' }} />  
             <AwesomeButton 
                 size='small'
                 type="primary"

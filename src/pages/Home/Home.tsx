@@ -8,7 +8,6 @@ import NavBar from '../../components/NavBar/NavBar'
 import TestBuilder from '../../components/TestSuite/TestBuilder/TestBuilder'
 import { StateContext } from '../../provider/StateProvider';
 
-
 const Home = () => {
   //added state context
   const { activePortHandler }: any = useContext(StateContext);
@@ -20,7 +19,6 @@ const Home = () => {
           <div className='file'><FileTree/></div>
           <div className='test'><TestBuilder/></div>
           <div className='code'><CodeEditor/></div>
-
         </div>
       </div>
     )

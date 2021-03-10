@@ -26,7 +26,7 @@ const FileTree = () => {
 
   const createTree = (tree) => tree.map((file) => {
     let ext = [(file.name).split('.')[1], (file.name).split('.')[2]]
-    if (file.files.length) {
+    if (file.files.length || ext[0] === undefined) {
       viewValue[file.name] = false;
       return (
         <ul key={file.name}>
@@ -105,13 +105,13 @@ const FileTree = () => {
   if (userPath.length > 1) {
     return (
     <div id='file-tree-head'>
-      <div><i className="fas fa-code-branch"></i>{"  " + projectName}</div>
+      <div><i className="fas fa-folder-open"></i>{"  " + projectName}</div>
       <p style={{fontSize: 8, paddingBottom: 10}}>{userPath}</p>
       {createTree(fileTree)}
     </div>)
   } else return (
       <div id='file-tree-head-empty'>
-          <div><i className="fas fa-code-branch"></i>{" FILE TREE"}</div>
+          <div><i className="fas fa-folder"></i>{" EMPTY"}</div>
       </div>) 
 };
 
