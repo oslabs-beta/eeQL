@@ -7,7 +7,7 @@
     background-color: #1e1e21;
   }
 #nav-text {
-  padding-bottom: 10px;
+  margin-top: 10px;
 }
 .port {
   text-align: right;
@@ -20,9 +20,9 @@
   .dropdown {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-start;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: solid 4px rgb(75, 162, 155) !important;
+    // border-bottom: solid 4px rgb(75, 162, 155) !important;
   }

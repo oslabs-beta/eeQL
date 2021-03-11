@@ -5,15 +5,17 @@ import './TestBuilder.scss'
 import RestEndpoint from "../RestEndpoint/RestEndpoint"
 import GraphQl from '../GraphQLEndpoint/GraphQLEndpoint'
 import RestTestCreation from "../TestGeneration/RestTestCreation"
+
 // import {ReactDOM, render} from 'react-dom'
 // @ts-ignore
 import { AwesomeButton, AwesomeButtonProgress } from 'react-awesome-button';
 
 const { remote } = window.require('electron');
+
 const fs = remote.require('fs')
 const TestBuilder = () => {
   const { test, testHandler, resetHandler }: any = useContext(TestContext);
-  const { userPath, activePort, activeFile, activeFileHandler }: any = useContext(StateContext)
+  const { userPath, activePort, activeFile, activeFileHandler, updateTreeHandler }: any = useContext(StateContext)
   const [local, localhandler] = useState(true);
 
   const clicker = () => {
@@ -59,6 +61,7 @@ const TestBuilder = () => {
         encoding: "utf8",
       }
       );
+      updateTreeHandler();
   }
 
   if (local){ return (
@@ -86,7 +89,7 @@ const TestBuilder = () => {
       <RestEndpoint/>
       <br></br>
       {/* Console.log result of test */}
-      <AwesomeButton
+      {/* <AwesomeButton
         size='small' 
         type="Primary"
         ripple={true}
@@ -97,8 +100,8 @@ const TestBuilder = () => {
           activeFileHandler(`${userPath}/__tests__/test.js`)
         }}
       >
-        BUILD
-      </AwesomeButton>
+        BUILD */}
+      {/* </AwesomeButton> */}
 
       {/* Update/Preview Test */}
       <AwesomeButton
@@ -163,7 +166,7 @@ else {
       <GraphQl/>
       <br></br>
       {/* Console.log result of test */}
-      <AwesomeButton
+      {/* <AwesomeButton
         size='small' 
         type="Primary"
         ripple={true}
@@ -175,7 +178,7 @@ else {
         }}
       >
         BUILD
-      </AwesomeButton>
+      </AwesomeButton> */}
 
       {/* Update/Preview Test */}
       <AwesomeButton

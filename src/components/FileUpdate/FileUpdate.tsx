@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-unresolved */ // ! Be careful
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { StateContext } from '../../provider/StateProvider';
 import { Link } from 'react-router-dom';
 // @ts-ignore
@@ -15,11 +15,11 @@ const fs = remote.require('fs')
 let current: string = '';
 let directoryArray;
 let fileArray;
-
+let cancelled = false
 
 const FileUpdate = () => {
     function nameSetter(name) {return name[name.length - 1]};
-    const { userPath, fileTreeHandler, pathHandler, fileTree}: any = useContext(StateContext);
+    const { userPath, fileTreeHandler, pathHandler, fileTree, updateTree}: any = useContext(StateContext);
     const { activePortHandler }: any = useContext(StateContext);
     const projectName = nameSetter(userPath.split('/'))
 
@@ -31,13 +31,21 @@ const FileUpdate = () => {
     const getPath = () => { remote.dialog
           .showOpenDialog({ properties: ['openDirectory'], message: 'Please choose your project folder'})
           .then((files: any) => {
-            if (!files.cancelled) {
+            if (files.cancelled) {
+              cancelled = true
+            }
+            else (!files.cancelled) 
+               current = files.filePaths[0];
+                exportTestFile(current);
                 pathHandler(files.filePaths[0]);
-                current = files.filePaths[0];
-                generateFileTree(current); }
+                generateFileTree(current); 
+            
               })
             }
-
+    const exportTestFile = (dir) => {
+              if (!fs.existsSync(`${dir}/__tests__`))
+                fs.mkdirSync(`${dir}/__tests__`);
+            };        
     const generateFileTree = (dir) => {
           let getDirectory = (current) => {
           directoryArray = fs.readdirSync(current).filter(file => file !== 'node_modules' && file[0] !== '.');
@@ -58,29 +66,33 @@ const FileUpdate = () => {
           fileTreeHandler(fileArray)
           return fileArray;
       };
+
+
+
+
+
     return (
     <div id='file-upload-footer'>
         <div id='file-upload-head'>
               
-                <AwesomeButtonProgress 
-                size='small'
+        <AwesomeButtonProgress 
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
+                  getPath()
+                  setTimeout(() => {
+                    next();
+                  }, 1000);}}
                 loadingLabel='...'
-                resultLabel={projectName}
+                resultLabel={projectName || 'UPLOAD'}
                 >
-                {projectName}
-                </AwesomeButtonProgress>
-                <AwesomeButton
+                {projectName || <i className="fas fa-file" ></i>}
+          </AwesomeButtonProgress>
+                {/* <AwesomeButton
                 onPress={getPath}
                 size='small'
                 type='link'
-                >⟳</AwesomeButton>
+                >⟳</AwesomeButton> */}
                 {/* <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} /> */}
         </div>
   </div>

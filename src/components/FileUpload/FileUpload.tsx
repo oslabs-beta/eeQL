@@ -16,6 +16,7 @@ const fs = remote.require('fs')
 let current: string = '';
 let directoryArray;
 let fileArray;
+let cancelled = false
 
 
 const FileUpload = () => {
@@ -37,11 +38,15 @@ const FileUpload = () => {
     const getPath = () => { remote.dialog
           .showOpenDialog({ properties: ['openDirectory'], message: 'Please choose your project folder'})
           .then((files: any) => {
-            if (!files.cancelled) {
+            if (files.cancelled) {
+              cancelled = true
+            }
+            else (!files.cancelled) 
                current = files.filePaths[0];
                 exportTestFile(current);
                 pathHandler(files.filePaths[0]);
-                generateFileTree(current); }
+                generateFileTree(current); 
+            
               })
             }
 
@@ -75,19 +80,19 @@ const FileUpload = () => {
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
+                  getPath()
+                  setTimeout(() => {
+                    next();
+                  }, 1000);}}
                 loadingLabel='...'
-                resultLabel={projectName}
+                resultLabel={projectName || 'UPLOAD'}
                 >
-                UPLOAD
+                {projectName || <i className="fas fa-file" ></i>}
                 </AwesomeButtonProgress>
-                <AwesomeButton
+                {/* <AwesomeButton
                 onPress={getPath}
                 type='link'
-                >✗</AwesomeButton>
+                >✗</AwesomeButton> */}
                 <Link to='/home'>
                 <AwesomeButton 
                 type="primary"
@@ -106,14 +111,14 @@ const FileUpload = () => {
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
+                  getPath()
+                  setTimeout(() => {
+                    next();
+                  }, 1000);}}
                 loadingLabel='...'
-                resultLabel={projectName}
+                resultLabel={projectName || 'UPLOAD'}
                 >
-                UPLOAD
+                {projectName || <i className="fas fa-file" ></i>}
                 </AwesomeButtonProgress>
                 <Link to='/home'>
                 <AwesomeButton 
