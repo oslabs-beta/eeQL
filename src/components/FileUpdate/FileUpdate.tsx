@@ -74,13 +74,13 @@ const FileUpdate = () => {
                 loadingLabel='...'
                 resultLabel={projectName}
                 >
-                NEW
+                {projectName}
                 </AwesomeButtonProgress>
                 <AwesomeButton
                 onPress={getPath}
                 size='small'
                 type='link'
-                >✗</AwesomeButton>
+                >⟳</AwesomeButton>
                 {/* <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} /> */}
         </div>
   </div>

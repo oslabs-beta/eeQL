@@ -13,8 +13,8 @@ const NavBar = () => {
         <div className="dropdown"> 
 
                 <Link to='/'><button className="dropbtn"><img src={logo} alt="eeql_logo" width='100' height='100'/></button></Link>
-                <FileUpdate />
-                <PortUpdate />
+                <div id='nav-text'>FILE: </div><FileUpdate />
+                <div id='nav-text'>PORT: </div><PortUpdate />
       </div>
     )
 }

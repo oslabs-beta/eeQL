@@ -3,8 +3,12 @@
     color: #1e1e21;
     font-size: 12px;
     border: none;
+
     background-color: #1e1e21;
   }
+#nav-text {
+  padding-bottom: 10px;
+}
 .port {
   text-align: right;
   color: #ffffff;
@@ -16,8 +20,9 @@
   .dropdown {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: flex-end;
     justify-content: flex-start;
     margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: solid 4px rgb(75, 162, 155) !important;
   }
-  
