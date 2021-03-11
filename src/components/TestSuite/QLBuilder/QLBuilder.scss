@@ -1,52 +1,14 @@
-#file-upload-head {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.test-builder {
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid 2px rgb(255, 214, 163);
+    padding: 60px 60px 60px 60px;
+    text-align: center;
 }
 
-.MuiButton-label {
-    border-bottom: none !important;
-
-}
-
-.MuiButton-containedPrimary {
-    margin-left: 12px !important;
-    min-width: 20px;
-
-    text-decoration: none !important;
-}
-.MuiSvgIcon-root {
-    padding: 4px;
-    margin-left: 4px;
-}
-
-.MuiButton-containedPrimary {
-    background-color: #32c2b5 !important;
-    // color: rgb(52, 52, 52) !important;
-    display: inline flex !important;
-    margin: 12px !important ;
-    // margin: 2px;
-}
-.MuiInputBase-input {
-    // margin-right: -90px !important;
-    box-shadow: none;
-    color: white !important;
-    // text-align: right;
-}
-.MuiInput-underline:after {
-    border-bottom: 2px solid #ffad3f !important;
-
-}
-.MuiInput-root {
-    border-bottom: 2px solid #32c2b5 !important;
-    // padding: 6px 6px !important;
-    // margin: 8px;
-}
-.MuiTouchRipple-root {
-    color: #32c2b5;
-}
 .aws-btn {
     font-family: Arial, Helvetica, sans-serif;
+    padding: 2px;
+    margin: 5px;
     --button-default-height: 50px;
     --button-default-font-size: 14px;
     --button-default-border-radius: 7px;

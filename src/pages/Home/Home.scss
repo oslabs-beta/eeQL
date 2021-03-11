@@ -355,15 +355,25 @@
   .grid-border {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+
   }
   .home-border {
     margin: 40px !important;
-    flex-grow: 2;
+    // flex-grow: 2;
     background-color: #1e1e21;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
   }
 
+.file {
+  padding:5px;
+}
+.test {
+  padding:5px;
+}
+.code {
+  padding:5px;
+}

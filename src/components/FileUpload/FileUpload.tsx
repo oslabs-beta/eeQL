@@ -16,6 +16,7 @@ const fs = remote.require('fs')
 let current: string = '';
 let directoryArray;
 let fileArray;
+let cancelled = false
 
 
 const FileUpload = () => {
@@ -23,7 +24,12 @@ const FileUpload = () => {
     const { userPath, fileTreeHandler, pathHandler, fileTree}: any = useContext(StateContext);
     const { activePortHandler }: any = useContext(StateContext);
     const projectName = nameSetter(userPath.split('/'))
-
+    
+    
+    const exportTestFile = (dir) => {
+      if (!fs.existsSync(`${dir}/__tests__`))
+        fs.mkdirSync(`${dir}/__tests__`);
+    };
     const setPort = (e) => {
         e.preventDefault()
         console.log(e.target.value)
@@ -32,10 +38,15 @@ const FileUpload = () => {
     const getPath = () => { remote.dialog
           .showOpenDialog({ properties: ['openDirectory'], message: 'Please choose your project folder'})
           .then((files: any) => {
-            if (!files.cancelled) {
+            if (files.cancelled) {
+              cancelled = true
+            }
+            else (!files.cancelled) 
+               current = files.filePaths[0];
+                exportTestFile(current);
                 pathHandler(files.filePaths[0]);
-                current = files.filePaths[0];
-                generateFileTree(current); }
+                generateFileTree(current); 
+            
               })
             }
 
@@ -64,24 +75,24 @@ const FileUpload = () => {
     return (
     <div id='file-upload-footer'>
         <div id='file-upload-head'>
-                <Input placeholder='8080 ' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
+                <Input placeholder='8080' className='port-input' type='number' onChange={(e) => setPort(e)} inputProps={{ 'aria-label': 'description' }} />
                 <AwesomeButtonProgress 
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
+                  getPath()
+                  setTimeout(() => {
+                    next();
+                  }, 1000);}}
                 loadingLabel='...'
-                resultLabel={projectName}
+                resultLabel={projectName || 'UPLOAD'}
                 >
-                UPLOAD
+                {projectName || <i className="fas fa-file" ></i>}
                 </AwesomeButtonProgress>
-                <AwesomeButton
+                {/* <AwesomeButton
                 onPress={getPath}
                 type='link'
-                >✗</AwesomeButton>
+                >✗</AwesomeButton> */}
                 <Link to='/home'>
                 <AwesomeButton 
                 type="primary"
@@ -100,14 +111,14 @@ const FileUpload = () => {
                 type="secondary"
                 ripple={true}
                 action={(element, next) => {
-                    getPath()
-                    next()
-                    return 
-                  }}
+                  getPath()
+                  setTimeout(() => {
+                    next();
+                  }, 1000);}}
                 loadingLabel='...'
-                resultLabel={projectName}
+                resultLabel={projectName || 'UPLOAD'}
                 >
-                UPLOAD
+                {projectName || <i className="fas fa-file" ></i>}
                 </AwesomeButtonProgress>
                 <Link to='/home'>
                 <AwesomeButton 

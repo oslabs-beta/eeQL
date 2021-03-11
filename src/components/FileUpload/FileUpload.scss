@@ -28,10 +28,10 @@
     // margin: 2px;
 }
 .MuiInputBase-input {
-    margin-right: -90px !important;
+    // margin-right: -90px !important;
     box-shadow: none;
     color: white !important;
-    text-align: right;
+    text-align: center;
 }
 .MuiInput-underline:after {
     border-bottom: 2px solid #ffad3f !important;
@@ -39,8 +39,8 @@
 }
 .MuiInput-root {
     border-bottom: 2px solid #32c2b5 !important;
-    padding: 6px 6px !important;
-    margin: 8px;
+    // padding: 6px 6px !important;
+    // margin: 8px;
 }
 .MuiTouchRipple-root {
     color: #32c2b5;

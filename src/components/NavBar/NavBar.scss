@@ -3,8 +3,12 @@
     color: #1e1e21;
     font-size: 12px;
     border: none;
+
     background-color: #1e1e21;
   }
+#nav-text {
+  margin-top: 10px;
+}
 .port {
   text-align: right;
   color: #ffffff;
@@ -16,37 +20,9 @@
   .dropdown {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-start;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    // border-bottom: solid 4px rgb(75, 162, 155) !important;
   }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    border-radius: 4px;
-    display: none;
-    position: absolute;
-    background-color: #32c2b5;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: #1e1e21;
-    padding: 8px 12px;
-    font-size: 14px;
-    text-decoration: none;
-    display: block;
-    border-radius: 3px;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #1e7972;}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-//   .dropdown:hover .dropbtn {background-color: #25857d;}
