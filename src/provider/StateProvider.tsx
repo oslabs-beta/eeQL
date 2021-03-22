@@ -5,6 +5,11 @@ export const StateContext = React.createContext({});
 
 const StateProvider = ({ children }: any) => {
 
+  const [darkMode, setDarkMode] = useState(true) 
+  const darkModeHandler = () => {
+    setDarkMode(!darkMode)
+  }
+ 
   // update and set state for user active chosen file
     const [updateTree, setUpdateTree] = useState(false) 
     const updateTreeHandler = () => {
@@ -35,6 +40,7 @@ const StateProvider = ({ children }: any) => {
   // return a wrapped component with the values of state and the functions to change them.
 return (
     <StateContext.Provider value = {{ 
+        darkMode, darkModeHandler,
         updateTree, updateTreeHandler,
         activePort, activePortHandler, 
         userPath, pathHandler,

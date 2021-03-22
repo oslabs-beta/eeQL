@@ -4,11 +4,11 @@
   const request = supertest(app);
   jest.useFakeTimers();  
   
-  test('123', async (done) => {
+  test('Frank', async (done) => {
     const response = await request
-    .POST('123')
-    .send(123);
+    .undefined('/frank')
     
-  expect(.send(123);).toBe(123);
+    
+  expect().toBe(string);
   return done();
   });
