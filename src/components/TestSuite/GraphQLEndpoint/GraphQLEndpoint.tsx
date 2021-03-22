@@ -71,18 +71,22 @@ const GraphQl = () => {
 
   return (
     <div>
+      <br/>
       <i className="fas fa-vial"></i>
       <div id="test-title">Test Builder</div>
+      <br/>
       <div className="rest-endpoint">
         <select
           defaultValue={test.methodSelect || methodOptions[0]}
           id="methodSelect"
           onInput={selectHandler}
         >
-          {methodOptions}
+          {methodOptions[1]}
         </select>
-        <b></b>
+        <br/>
         <div id="server-button">
+          <br/>
+          <br/>
           <AwesomeButtonProgress
             type="secondary"
             ripple={true}
@@ -111,8 +115,25 @@ const GraphQl = () => {
             loadingLabel="connecting"
             resultLabel="connected"
           >
-            UPLOAD SCHEMA FILE
+            UPLOAD SCHEMAS
           </AwesomeButtonProgress>
+          <AwesomeButtonProgress
+            type="secondary"
+            ripple={true}
+            action={(element, next) => {
+              getSchemaPath();
+              setTimeout(() => {
+                next();
+              }, 1000);
+              return;
+            }}
+            loadingLabel="connecting"
+            resultLabel="connected"
+          >
+            UPLOAD RESOLVERS
+          </AwesomeButtonProgress>
+          <br/>
+          <br/>
           <Input
             placeholder="Database URI"
             fullWidth={true}
@@ -124,44 +145,53 @@ const GraphQl = () => {
         <br />
         <br />
         <Input
-          placeholder="Describe Your Test"
+          // placeholder="/graphql"
+          defaultValue='/graphql'
+          // defaultValue={test.desiredEndpoint || ""}
+          fullWidth={true}
+          id="desiredEndpoint"
+          disabled={true}
+          type="text"
+          // onChange={inputHandler}
+        />
+        <br/>
+        <br/>
+        <Input
+          placeholder="Describe Your Query/Mutation"
           fullWidth={true}
           id="expectedRes"
           type="text"
+          multiline={true}
           onChange={inputHandler}
         />
-        <Input
-          placeholder="Route/Endpoint"
-          defaultValue={test.desiredEndpoint || ""}
-          fullWidth={true}
-          id="desiredEndpoint"
-          type="text"
-          onChange={inputHandler}
-        />
-        <Input
+
+        {/* <Input
           placeholder="Query Input"
           defaultValue={test.inputData || ""}
           fullWidth={true}
           id="inputData"
           type="text"
           onChange={inputHandler}
-        />
+        /> */}
+        <br/>
+        <br/>
         <Input
           placeholder="Expected Data"
           defaultValue={test.outputData || ""}
           fullWidth={true}
           id="outputData"
           type="text"
+          multiline={true}
           onChange={inputHandler}
         />
-        <Input
+        {/* <Input
           placeholder="Header"
           defaultValue={test.headerInfo || ""}
           fullWidth={true}
           id="outputData"
           type="text"
           onChange={inputHandler}
-        />
+        /> */}
         <br></br>
       </div>
     </div>
