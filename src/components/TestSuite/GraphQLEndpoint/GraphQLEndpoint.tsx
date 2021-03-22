@@ -157,11 +157,12 @@ const GraphQl = () => {
         <br/>
         <br/>
         <Input
-          placeholder="Describe Your Query/Mutation"
+          placeholder={`Describe Your Query/Mutation: ${'\n'}${'\n'} query: { users { id, name } } ${'\n'} mutation: { users { id, name } }`}
           fullWidth={true}
           id="expectedRes"
           type="text"
           multiline={true}
+          rows={4}
           onChange={inputHandler}
         />
 
@@ -182,6 +183,7 @@ const GraphQl = () => {
           id="outputData"
           type="text"
           multiline={true}
+          rows={3}
           onChange={inputHandler}
         />
         {/* <Input
