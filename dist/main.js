@@ -109,11 +109,11 @@ var currentWindow; // create a function that opens a create a new window
 
 function newWindow() {
   currentWindow = new electron__WEBPACK_IMPORTED_MODULE_0__["BrowserWindow"]({
-    title: 'eeQL',
+    title: "eeQL",
     // to be determined
     icon: null,
     // eeql-blue
-    backgroundColor: '##1c90f5',
+    backgroundColor: "##1c90f5",
     // starting dimensions of new window
     height: 800,
     width: 800,
@@ -125,21 +125,21 @@ function newWindow() {
   // if in development mode, serve the local server to electron
 
   if (true) {
-    currentWindow.loadURL('http://localhost:4000');
+    currentWindow.loadURL("http://localhost:4000");
     currentWindow.webContents.openDevTools();
   } // otherwise, serve the compile dist folder for render
   else {} // set window to null after app is closed.
   // create IPC event listener on browserRouter
 
 
-  currentWindow.on('closed', function () {
+  currentWindow.on("closed", function () {
     currentWindow = null;
   });
 } // after IPC event listener is triggered "ready"
 // invoke our create new window by invoking "newWindow()"
 
 
-electron__WEBPACK_IMPORTED_MODULE_0__["app"].on('ready', newWindow); // electron, by default, refreshes every navigation
+electron__WEBPACK_IMPORTED_MODULE_0__["app"].on("ready", newWindow); // electron, by default, refreshes every navigation
 // since we're using node modules outside of our dist folder, we have to disable auto refresh
 
 electron__WEBPACK_IMPORTED_MODULE_0__["app"].allowRendererProcessReuse = true;
