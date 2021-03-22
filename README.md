@@ -44,7 +44,7 @@ Please make sure to update tests as appropriate.
 <br/>
 
 ## Contact and Inquiries
-[Contact us](contact@eeql.com) for all other issues/inquiries.
+[Contact us](contact@eeql.io) for all other issues/inquiries.
 
 <br/>
 
