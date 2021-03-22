@@ -1,21 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TestContext } from "../../../provider/TestProvider";
 import { StateContext } from "../../../provider/StateProvider";
-import './TestBuilder.scss'
-import RestEndpoint from "../RestEndpoint/RestEndpoint"
-import GraphQl from '../GraphQLEndpoint/GraphQLEndpoint'
-import RestTestCreation from "../TestGeneration/RestTestCreation"
+import "./TestBuilder.scss";
+import RestEndpoint from "../RestEndpoint/RestEndpoint";
+import GraphQl from "../GraphQLEndpoint/GraphQLEndpoint";
+import RestTestCreation from "../TestGeneration/RestTestCreation";
 
 // import {ReactDOM, render} from 'react-dom'
 // @ts-ignore
-import { AwesomeButton, AwesomeButtonProgress } from 'react-awesome-button';
+import { AwesomeButton, AwesomeButtonProgress } from "react-awesome-button";
 
-const { remote } = window.require('electron');
+const { remote } = window.require("electron");
 
-const fs = remote.require('fs')
+const fs = remote.require("fs");
 const TestBuilder = () => {
   const { test, testHandler, resetHandler }: any = useContext(TestContext);
-  const { userPath, activePort, activeFile, activeFileHandler, updateTreeHandler }: any = useContext(StateContext)
+  const {
+    userPath,
+    activeFile,
+    activeFileHandler,
+    updateTreeHandler,
+  }: any = useContext(StateContext);
   const [local, localhandler] = useState(true);
 
   const clicker = () => {
@@ -29,7 +34,7 @@ const TestBuilder = () => {
       "desiredEndpoint",
       "inputData",
       "outputData",
-      "headerInfo"
+      "headerInfo",
     ];
     // iterate through all dropdowns (select is the formal name) to extract current selected value, and store that selection in our state
     for (let i = 0; i < selectFieldsArray.length; i++) {
@@ -48,11 +53,11 @@ const TestBuilder = () => {
     }
 
     console.log(test);
-    console.log('monaco', activeFile)
+    console.log("monaco", activeFile);
   };
 
   const handleSaveTest = () => {
-    const restTest = RestTestCreation(test)
+    const restTest = RestTestCreation(test);
     console.log(restTest);
     fs.writeFileSync(
       `${userPath}/__tests__/insertFileNameHere.test.js`,
@@ -60,36 +65,33 @@ const TestBuilder = () => {
       {
         encoding: "utf8",
       }
-      );
-      updateTreeHandler();
-  }
+    );
+    updateTreeHandler();
+  };
 
-  if (local){ return (
-    <div className='test-builder'>
-      <AwesomeButton
-        size='small' 
-        type="Primary"
-        ripple={true}
-        onPress={ () =>
-          localhandler(true)
-        }
-      >
-        REST
-      </AwesomeButton>
-      <AwesomeButton
-        size='small' 
-        type="Primary"
-        ripple={true}
-        onPress={ () =>
-          localhandler(false)
-        }
-      >
-        GRAPHQL
-      </AwesomeButton>
-      <RestEndpoint/>
-      <br></br>
-      {/* Console.log result of test */}
-      {/* <AwesomeButton
+  if (local) {
+    return (
+      <div className="test-builder">
+        <AwesomeButton
+          size="small"
+          type="Primary"
+          ripple={true}
+          onPress={() => localhandler(true)}
+        >
+          REST
+        </AwesomeButton>
+        <AwesomeButton
+          size="small"
+          type="Primary"
+          ripple={true}
+          onPress={() => localhandler(false)}
+        >
+          GRAPHQL
+        </AwesomeButton>
+        <RestEndpoint />
+        <br></br>
+        {/* Console.log result of test */}
+        {/* <AwesomeButton
         size='small' 
         type="Primary"
         ripple={true}
@@ -101,72 +103,68 @@ const TestBuilder = () => {
         }}
       >
         BUILD */}
-      {/* </AwesomeButton> */}
+        {/* </AwesomeButton> */}
 
-      {/* Update/Preview Test */}
-      <AwesomeButton
-        size='small' 
-        type="secondary"
-        ripple={true}
-        onPress={() => activeFileHandler()}
-      >
-        UPDATE
-      </AwesomeButton>
-      {/* Reset button  */}
-      <AwesomeButton
-        size='small' 
-        type="link"
-        ripple={true}
-        onPress={resetHandler}
-      >
-        RESET
-      </AwesomeButton>
-      {/* save button  */}
-      <AwesomeButtonProgress
-        size='small' 
-        type="Primary"
-        ripple={true}
-        loadingLabel='...'
-        resultLabel='✓'
-        action={(element, next) => {
-          console.log('Saving Test...');
-          handleSaveTest();
-          setTimeout(() => {
-            next();
-          }, 1000);}}
-      >
-        SAVE
-      </AwesomeButtonProgress>
-    </div>
-  );
-}
-else {
-  return (
-    <div className='test-builder'>
-            <AwesomeButton
-        size='small' 
-        type="Primary"
-        ripple={true}
-        onPress={ () =>
-          localhandler(true)
-        }
-      >
-        REST
-      </AwesomeButton>
-      <AwesomeButton
-        size='small' 
-        type="Primary"
-        ripple={true}
-        onPress={ () =>
-          localhandler(false)
-        }
-      >
-        GRAPHQL
-      </AwesomeButton>
-      <GraphQl/>
-      <br></br>
-      {/* Console.log result of test */}
-      {/* <AwesomeButton
+        {/* Update/Preview Test */}
+        <AwesomeButton
+          size="small"
+          type="secondary"
+          ripple={true}
+          onPress={() => activeFileHandler()}
+        >
+          UPDATE
+        </AwesomeButton>
+        {/* Reset button  */}
+        <AwesomeButton
+          size="small"
+          type="link"
+          ripple={true}
+          onPress={resetHandler}
+        >
+          RESET
+        </AwesomeButton>
+        {/* save button  */}
+        <AwesomeButtonProgress
+          size="small"
+          type="Primary"
+          ripple={true}
+          loadingLabel="..."
+          resultLabel="✓"
+          action={(element, next) => {
+            console.log("Saving Test...");
+            handleSaveTest();
+            setTimeout(() => {
+              next();
+            }, 1000);
+          }}
+        >
+          SAVE
+        </AwesomeButtonProgress>
+      </div>
+    );
+  } else {
+    return (
+      <div className="test-builder">
+        <AwesomeButton
+          size="small"
+          type="Primary"
+          ripple={true}
+          onPress={() => localhandler(true)}
+        >
+          REST
+        </AwesomeButton>
+        <AwesomeButton
+          size="small"
+          type="Primary"
+          ripple={true}
+          onPress={() => localhandler(false)}
+        >
+          GRAPHQL
+        </AwesomeButton>
+        <GraphQl />
+        <br></br>
+        {/* Console.log result of test */}
+        {/* <AwesomeButton
         size='small' 
         type="Primary"
         ripple={true}
@@ -180,44 +178,44 @@ else {
         BUILD
       </AwesomeButton> */}
 
-      {/* Update/Preview Test */}
-      <AwesomeButton
-        size='small' 
-        type="secondary"
-        ripple={true}
-        onPress={() => activeFileHandler()}
-      >
-        UPDATE
-      </AwesomeButton>
-      {/* Reset button  */}
-      <AwesomeButton
-        size='small' 
-        type="link"
-        ripple={true}
-        onPress={resetHandler}
-      >
-        RESET
-      </AwesomeButton>
-      {/* save button  */}
-      <AwesomeButtonProgress
-        size='small' 
-        type="Primary"
-        ripple={true}
-        loadingLabel='...'
-        resultLabel='✓'
-        action={(element, next) => {
-          console.log('Saving Test...');
-          handleSaveTest();
-          setTimeout(() => {
-            next();
-          }, 1000);}}
-      >
-        SAVE
-      </AwesomeButtonProgress>
-    </div>
-  );
-
-}
+        {/* Update/Preview Test */}
+        <AwesomeButton
+          size="small"
+          type="secondary"
+          ripple={true}
+          onPress={() => activeFileHandler()}
+        >
+          UPDATE
+        </AwesomeButton>
+        {/* Reset button  */}
+        <AwesomeButton
+          size="small"
+          type="link"
+          ripple={true}
+          onPress={resetHandler}
+        >
+          RESET
+        </AwesomeButton>
+        {/* save button  */}
+        <AwesomeButtonProgress
+          size="small"
+          type="Primary"
+          ripple={true}
+          loadingLabel="..."
+          resultLabel="✓"
+          action={(element, next) => {
+            console.log("Saving Test...");
+            handleSaveTest();
+            setTimeout(() => {
+              next();
+            }, 1000);
+          }}
+        >
+          SAVE
+        </AwesomeButtonProgress>
+      </div>
+    );
+  }
 };
 
 export default TestBuilder;

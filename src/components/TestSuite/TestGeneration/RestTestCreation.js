@@ -1,5 +1,5 @@
 const RestTestCreation = (state) => {
-  // Sample Representation of Test Output: 
+  // Sample Representation of Test Output:
   `
   const supertest = require('supertest');
   const app = require('../server/server.js'); 
@@ -12,18 +12,20 @@ const RestTestCreation = (state) => {
     .set({});
     expect(response.status).toBe(200);
   return done();
-  });`
-  
+  });`;
+
   const serverApp = state.serverApp;
   const expectedRes = state.expectedRes;
   const methodSelect = state.methodSelect;
   const desiredEndpoint = state.desiredEndpoint;
-  const inputData = (state.methodSelect === 'POST' || state.methodSelect === 'PUT') ? `.send(${state.inputData});` : '';
-  const headerInfo = (state.headerInfo) ? `.set(${headerInfo})` : '';
+  const inputData =
+    state.methodSelect === "POST" || state.methodSelect === "PUT"
+      ? `.send(${state.inputData});`
+      : "";
+  const headerInfo = state.headerInfo ? `.set(${headerInfo})` : "";
   const outputData = state.outputData;
 
-  const test =  
-  `
+  const test = `
   const supertest = require('supertest');
   const app = require('${serverApp}'); 
   const request = supertest(app);
@@ -37,9 +39,9 @@ const RestTestCreation = (state) => {
   expect(${inputData}).toBe(${outputData});
   return done();
   });
-`
+`;
 
   return test;
-}
+};
 
-  export default RestTestCreation;
+export default RestTestCreation;

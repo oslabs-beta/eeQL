@@ -1,11 +1,5 @@
-
-
-
-
-
-
 const graphQLTestCreation = (state) => {
-  // Sample Representation of Test Output: 
+  // Sample Representation of Test Output:
   `
   const app = require("../src/server");
   const supertest = require("supertest");
@@ -33,20 +27,22 @@ const graphQLTestCreation = (state) => {
         expect(res.body.data.users.length).toEqual(3);
         done();
       });
-  });`
-  
+  });`;
+
   const serverApp = state.serverApp;
   const expectedRes = state.expectedRes;
   const methodSelect = state.methodSelect;
   const desiredEndpoint = state.desiredEndpoint;
-  const inputData = (state.methodSelect === 'POST' || state.methodSelect === 'PUT') ? `.send(${state.inputData});` : '';
-  const headerInfo = (state.headerInfo) ? `.set(${headerInfo})` : '';
+  const inputData =
+    state.methodSelect === "POST" || state.methodSelect === "PUT"
+      ? `.send(${state.inputData});`
+      : "";
+  const headerInfo = state.headerInfo ? `.set(${headerInfo})` : "";
   const outputData = state.outputData;
   const schemaApp = state.schemaApp;
   const URI = state.URI;
 
-  const test =  
-  `
+  const test = `
   const app = require("${serverApp}");
   const supertest = require("supertest");
   const db = require("${URI}");
@@ -68,9 +64,9 @@ const graphQLTestCreation = (state) => {
         done();
       });
   });
-  `
+  `;
 
   return test;
-}
+};
 
-  export default graphQLTestCreation;
+export default graphQLTestCreation;
