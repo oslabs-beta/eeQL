@@ -152,7 +152,6 @@ const GraphQl = () => {
           id="desiredEndpoint"
           disabled={true}
           type="text"
-          // onChange={inputHandler}
         />
         <br/>
         <br/>
