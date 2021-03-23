@@ -7,9 +7,9 @@ _"EEQL is a standalone test creation suite that constructs reliable endpoint tes
 
 ## Installation
 
-Visit [eeQL.io](https://www.eeql.io/) to install application. 
+Please dive into [eeQL.io](https://www.eeql.io/) to install this application. 
 
-Refer to [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) for more information on compatability and previous releases.
+Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) for more information on compatability and previous releases.
 
 <br/>
 
@@ -48,5 +48,13 @@ Please make sure to update tests as appropriate.
 
 <br/>
 
+## Developers 
+[Abu Fofanah](https://www.linkedin.com/in/abu-fofanah/) |
+[Jason Speare](https://www.linkedin.com/in/jason-speare/) |
+[Kimberley Spicer]( https://www.linkedin.com/in/kimberleyspicer/) |
+[Ramtin Khoee](https://www.linkedin.com/in/ramtinkhoee/) |
+<br/>
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the [MIT license](https://choosealicense.com/licenses/mit/).
+
+
