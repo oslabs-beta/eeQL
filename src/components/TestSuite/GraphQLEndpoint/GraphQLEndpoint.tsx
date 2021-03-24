@@ -5,8 +5,16 @@ import { ApolloClient, InMemoryCache, ApolloProvider, HTTPLink, gql, from } from
 import { TestContext } from "../../../provider/TestProvider";
 import { StateContext } from "../../../provider/StateProvider";
 import Input from "../../../../node_modules/@material-ui/core/Input";
+import "./GraphQLEndpoint.scss";
 // @ts-ignore
 import { AwesomeButtonProgress } from "react-awesome-button";
+
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
+import Grid from '@material-ui/core/Grid';
+import { green } from '@material-ui/core/colors'
+import { withStyles } from '@material-ui/core/styles'
 
 const { remote } = window.require("electron");
 const GraphQl = () => {
@@ -14,6 +22,7 @@ const GraphQl = () => {
   const { activePort, activeFile, setActiveFile }: any = useContext(
     StateContext
   );
+  const [operationIsMutation, setoperationIsMutation] = useState(false);
   let current;
 
   const methods = ["GET", "POST", "PUT", "DELETE"];
@@ -25,19 +34,6 @@ const GraphQl = () => {
       </option>
     );
   }
-  const getPath = () => {
-    remote.dialog
-      .showOpenDialog({
-        properties: ["openFile"],
-        message: "Please choose your server file",
-      })
-      .then((files: any) => {
-        if (!files.cancelled) {
-          current = files.filePaths[0];
-          inputHandler(null);
-        }
-      });
-  };
   const getSchemaPath = () => {
     remote.dialog
       .showOpenDialog({
@@ -47,47 +43,83 @@ const GraphQl = () => {
       .then((files: any) => {
         if (!files.cancelled) {
           current = files.filePaths[0];
-          inputHandler(undefined);
+          testHandler("schemaFile", current);
         }
       });
   };
 
-  const selectHandler = (e: any): void => {
-    const dropdownId = e.target.id;
-    const dropdown = document.getElementById(dropdownId) as HTMLSelectElement;
-    const selection = dropdown.options[dropdown.selectedIndex].text;
-    testHandler(dropdownId, selection);
+  const getResolverPath = () => {
+    remote.dialog
+      .showOpenDialog({
+        properties: ["openFile"],
+        message: "Please choose your resolver file",
+      })
+      .then((files: any) => {
+        if (!files.cancelled) {
+          current = files.filePaths[0];
+          testHandler("resolverFile", current);
+        }
+      });
   };
+
+  // const selectHandler = (e: any): void => {
+  //   const dropdownId = e.target.id;
+  //   const dropdown = document.getElementById(dropdownId) as HTMLSelectElement;
+  //   const selection = dropdown.options[dropdown.selectedIndex].text;
+  //   testHandler(dropdownId, selection);
+  // };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e == null) {
-      console.log({ serverApp: current });
-      testHandler("serverApp", current);
+      console.log({ schemaFile: current });
+      testHandler("schemaFile", current);
     } else if (e == undefined) {
-      console.log({ schemaApp: current });
-      testHandler("schemaApp", current);
+      console.log({ resolverFile: current });
+      testHandler("resolverFile", current);
     } else testHandler(e.target.id, (e.target as HTMLInputElement).value);
   };
 
+  const gqlOperationHandler = (): void => {
+    setoperationIsMutation(!operationIsMutation)
+    testHandler("operationIsMutation", operationIsMutation);
+  }
+
+
+  //color change for switch
+  const GreenSwitch = withStyles({
+    switchBase: {
+      color: green[300],
+      '&$checked': {
+        color: green[500],
+      },
+      '&$checked + $track': {
+        backgroundColor: green[500],
+      },
+    },
+    checked: {},
+    track: {},
+  }
+
+  )(Switch)
+
+
+
   return (
     <div>
-      <br/>
+      {/* <br/> */}
       <i className="fas fa-vial"></i>
       <div id="test-title">Test Builder</div>
-      <br/>
+      {/* <br/> */}
       <div className="rest-endpoint">
-        <select
+        {/* <select
           defaultValue={test.methodSelect || methodOptions[0]}
           id="methodSelect"
           onInput={selectHandler}
         >
           {methodOptions[1]}
-        </select>
-        <br/>
+        </select> */}
         <div id="server-button">
-          <br/>
-          <br/>
-          <AwesomeButtonProgress
+          {/* <AwesomeButtonProgress
             type="secondary"
             ripple={true}
             action={(element, next) => {
@@ -101,7 +133,7 @@ const GraphQl = () => {
             resultLabel="connected"
           >
             UPLOAD SERVER FILE
-          </AwesomeButtonProgress>
+          </AwesomeButtonProgress> */}
           <AwesomeButtonProgress
             type="secondary"
             ripple={true}
@@ -121,7 +153,7 @@ const GraphQl = () => {
             type="secondary"
             ripple={true}
             action={(element, next) => {
-              getSchemaPath();
+              getResolverPath();
               setTimeout(() => {
                 next();
               }, 1000);
@@ -132,19 +164,17 @@ const GraphQl = () => {
           >
             UPLOAD RESOLVERS
           </AwesomeButtonProgress>
-          <br/>
-          <br/>
-          <Input
-            placeholder="Database URI"
-            fullWidth={true}
-            id="URI"
-            type="password"
-            onChange={inputHandler}
-          />
+          <br />
         </div>
-        <br />
-        <br />
         <Input
+          placeholder="Describe Your Test"
+          fullWidth={true}
+          id="expectedRes"
+          type="text"
+          onChange={inputHandler}
+        />
+        <br />
+        {/* <Input
           // placeholder="/graphql"
           defaultValue='/graphql'
           // defaultValue={test.desiredEndpoint || ""}
@@ -152,13 +182,12 @@ const GraphQl = () => {
           id="desiredEndpoint"
           disabled={true}
           type="text"
-        />
-        <br/>
-        <br/>
+        /> */}
+        {/* <br/> */}
         <Input
-          placeholder={`Describe Your Query/Mutation: ${'\n'}${'\n'} query: { users { id, name } } ${'\n'} mutation: { users { id, name } }`}
+          placeholder={`Enter Your Query/Mutation: ${'\n'}${'\n'} query: { users { id, name } } ${'\n'} mutation: { users { id, name } }`}
           fullWidth={true}
-          id="expectedRes"
+          id="gqlOperationText"
           type="text"
           multiline={true}
           rows={4}
@@ -173,18 +202,38 @@ const GraphQl = () => {
           type="text"
           onChange={inputHandler}
         /> */}
-        <br/>
-        <br/>
-        <Input
-          placeholder="Expected Data"
-          defaultValue={test.outputData || ""}
-          fullWidth={true}
-          id="outputData"
-          type="text"
-          multiline={true}
-          rows={3}
-          onChange={inputHandler}
-        />
+        {/* <br/> */}
+
+        <Grid component="label" container alignItems="center" justify="center" spacing={1}>
+          <Grid item>Query</Grid>
+          <Grid item>
+
+            <Switch
+              checked={operationIsMutation}
+              onChange={gqlOperationHandler}
+              id="operationIsMutation"
+            />
+          </Grid>
+          <Grid item>Mutation</Grid>
+        </Grid>
+
+        {/* <br/> */}
+        {/* conditionally render box where user enters data to be fed to the mutation.  */}
+        {(operationIsMutation) ?
+
+          <Input
+            placeholder="Mutation Object with fields of input"
+            defaultValue={test.mutationObject || ""}
+            fullWidth={true}
+            id="mutationObject"
+            type="text"
+            multiline={true}
+            rows={3}
+            onChange={inputHandler}
+          />
+          :
+          null
+        }
         {/* <Input
           placeholder="Header"
           defaultValue={test.headerInfo || ""}
@@ -200,28 +249,3 @@ const GraphQl = () => {
 };
 
 export default GraphQl;
-
-//InMemoryCache normalizes query response objects before it saves them to its internal data store
-//InMemoryCache generates a unique identifier for any object that includes a __typename field
-
-// export const client = new ApolloClient({
-// URI: 'http://localhost:8080',
-// cache: new InMemoryCache(),
-// onError: (e)=> {console.log('The error is :', e)}
-// })
-
-// //TEST
-// describe(`${test}`, ()=>{
-// it($`{test.expectedRes}`, async()=>{
-// // create a  GraphQLSchema instance using the function makeExecutableSchema
-
-// //assign variable to the value of reading schema using fs.readFileSync
-// const readSchema = fs.readFileSync('users graphql schema', utf8)
-// //assign variable to the value of the schema and resolvers  combined using makeExecutableSchema
-// const finalSchema = makeExecutableSchema({readSchema, resolvers})
-// //   await
-// })
-
-// )
-
-// })

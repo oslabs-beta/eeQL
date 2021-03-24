@@ -1,72 +1,86 @@
 const graphQLTestCreation = (state) => {
-  // Sample Representation of Test Output:
-  `
-  const app = require("../src/server");
-  const supertest = require("supertest");
-  const { stopDatabase } = require("../src/database");
-   
-  const request = supertest(app);
-   
-  afterAll(async () => {
-    await stopDatabase();
-  });
-   
-  test("fetch users", async (done) => {
-   
-    request
-      .post("/graphql")
-      .send({
-        query: "{ users{ id, name} }",
-      })
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) return done(err);
-        expect(res.body).toBeInstanceOf(Object);
-        expect(res.body.data.users.length).toEqual(3);
-        done();
-      });
-  });`;
 
-  const serverApp = state.serverApp;
-  const expectedRes = state.expectedRes;
-  const methodSelect = state.methodSelect;
-  const desiredEndpoint = state.desiredEndpoint;
-  const inputData =
-    state.methodSelect === "POST" || state.methodSelect === "PUT"
-      ? `.send(${state.inputData});`
-      : "";
-  const headerInfo = state.headerInfo ? `.set(${headerInfo})` : "";
-  const outputData = state.outputData;
-  const schemaApp = state.schemaApp;
-  const URI = state.URI;
 
-  const test = `
-  const app = require("${serverApp}");
-  const supertest = require("supertest");
-  const db = require("${URI}");
-   
-  const request = supertest(app);
-   
-  test("${expectedRes}", async (done) => {
-   
-    request
-      .post("/graphql")
-      .send(${inputData})
-      .set(${headerInfo})
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) return done(err);
-        expect(${inputData}).toBeInstanceOf(Object);
-        expect(${inputData}.data.users.length).toEqual(${outputData});
-        done();
-      });
-  });
-  `;
+  const addMutationObject = (state.operationIsMutation !== true) ? `, ${state.mutationObject}` : "";
+//   if (state.operationIsMutation) {
+//     gqlOperationText += `, {
+//       ${state.mutationObject}
+//     }`
+//   }
+  
+//   = (!state.operationIsQuery) ? 
+// ? `.send(${state.inputData});`
+// : "";
 
-  return test;
+// const isQueryValid = state.queryValidity ? true : false;
+
+// const mutationObject = {};
+
+const egqlBoilerplate = (state) => 
+`
+'use strict'
+
+const fs = require('fs')
+const path = require('path')
+const EasyGraphQLTester = require('easygraphql-tester')
+
+const schema = fs.readFileSync(path.join(__dirname, "${state.schemaFile}"), 'utf8')
+const resolvers = require("${state.resolverFile}")
+
+describe('Test queries and mutations', () => {
+  let tester
+
+  beforeEach(() => {
+    tester = new EasyGraphQLTester(schema, resolvers)
+  })
+  describe('${state.expectedRes}', () => {
+`
+
+const queryValidQueryBoilerPlate = (state) => 
+`
+    it('${state.expectedRes}', () => {
+      const operation = \`${state.gqlOperationText}\`
+      tester.test(${state.validOrInvalid}, operation${addMutationObject})
+    })
+`
+
+const closingParens = `
+  })
+})
+`
+
+
+//     it('${insertTestDescriptionHere}', () => {
+//       const validQuery = `
+//         {
+//           getMeByTestResult(result: 4.9) {
+//             email
+//           }
+//         }
+//       `
+//       tester.test(true, validQuery)
+//     })
+
+//     it('Should pass if the mutation is valid', () => {
+//       const mutation = `
+//         mutation UpdateUserScores($scores: ScoresInput!) {
+//           updateUserScores(scores: $scores) {
+//             email
+//             scores
+//           }
+//         }
+//       `
+//       tester.test(true, mutation, {
+//         scores: {
+//           scores: [1, 2, 3]
+//         }
+//       })
+//     })
+// //   })
+// // })
+
+
+return egqlBoilerplate(state) + queryValidQueryBoilerPlate(state) + closingParens;
 };
 
 export default graphQLTestCreation;
