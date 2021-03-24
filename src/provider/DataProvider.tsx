@@ -6,11 +6,10 @@ export const DataContext = React.createContext({});
 
 //initial state
 const DataProviders = ({ children }: any) => {
-  const [database, setData] = useState('test');
+  const [database, setData] = useState("test");
 
   //handler for all states with  k-v's that are added/updated
   const dataHandler = (ref) => {
-
     setData(ref);
   };
 
