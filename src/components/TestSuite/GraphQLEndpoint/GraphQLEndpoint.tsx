@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 // import GraphQL from "graphql";
 // @ts-ignore
-import { ApolloClient, InMemoryCache, ApolloProvider, HTTPLink, gql, from } from "@apollo/client/core";
 import { TestContext } from "../../../provider/TestProvider";
 import { StateContext } from "../../../provider/StateProvider";
 import Input from "../../../../node_modules/@material-ui/core/Input";
@@ -9,8 +8,6 @@ import "./GraphQLEndpoint.scss";
 // @ts-ignore
 import { AwesomeButtonProgress } from "react-awesome-button";
 
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { green } from '@material-ui/core/colors'
@@ -22,18 +19,14 @@ const GraphQl = () => {
   const { activePort, activeFile, setActiveFile }: any = useContext(
     StateContext
   );
-  const [operationIsMutation, setoperationIsMutation] = useState(false);
+  const [operationIsMutation, setOperationIsMutation] = useState(false);
+  const [operationIsValid, setOperationIsValid] = useState(false);
+
+  // variable denoting current file in file operations
   let current;
 
-  const methods = ["GET", "POST", "PUT", "DELETE"];
-  const methodOptions = [];
-  for (let a = 0; a < methods.length; a++) {
-    methodOptions.push(
-      <option key={`${a} + method`} value={methods[a]}>
-        {methods[a]}
-      </option>
-    );
-  }
+
+  // handler for adding schema path to state 
   const getSchemaPath = () => {
     remote.dialog
       .showOpenDialog({
@@ -48,6 +41,7 @@ const GraphQl = () => {
       });
   };
 
+  // handler for adding resolver path to state 
   const getResolverPath = () => {
     remote.dialog
       .showOpenDialog({
@@ -62,13 +56,7 @@ const GraphQl = () => {
       });
   };
 
-  // const selectHandler = (e: any): void => {
-  //   const dropdownId = e.target.id;
-  //   const dropdown = document.getElementById(dropdownId) as HTMLSelectElement;
-  //   const selection = dropdown.options[dropdown.selectedIndex].text;
-  //   testHandler(dropdownId, selection);
-  // };
-
+  // handler for adding data from input fields to state
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e == null) {
       console.log({ schemaFile: current });
@@ -79,11 +67,17 @@ const GraphQl = () => {
     } else testHandler(e.target.id, (e.target as HTMLInputElement).value);
   };
 
+  // handler for query/mutation switch
   const gqlOperationHandler = (): void => {
-    setoperationIsMutation(!operationIsMutation)
+    setOperationIsMutation(!operationIsMutation)
     testHandler("operationIsMutation", operationIsMutation);
   }
 
+  // handler for valid/invalid query switch 
+  const validOperationHandler = (): void => {
+    setOperationIsValid(!operationIsValid)
+    testHandler("operationIsValid", operationIsValid);
+  }
 
   //color change for switch
   const GreenSwitch = withStyles({
@@ -99,41 +93,17 @@ const GraphQl = () => {
     checked: {},
     track: {},
   }
-
   )(Switch)
 
 
 
   return (
     <div>
-      {/* <br/> */}
       <i className="fas fa-vial"></i>
-      <div id="test-title">Test Builder</div>
-      {/* <br/> */}
+      <div id="test-title">GraphQL Test Builder</div>
       <div className="rest-endpoint">
-        {/* <select
-          defaultValue={test.methodSelect || methodOptions[0]}
-          id="methodSelect"
-          onInput={selectHandler}
-        >
-          {methodOptions[1]}
-        </select> */}
         <div id="server-button">
-          {/* <AwesomeButtonProgress
-            type="secondary"
-            ripple={true}
-            action={(element, next) => {
-              getPath();
-              setTimeout(() => {
-                next();
-              }, 1000);
-              return;
-            }}
-            loadingLabel="connecting"
-            resultLabel="connected"
-          >
-            UPLOAD SERVER FILE
-          </AwesomeButtonProgress> */}
+          {/* button to upload schemas */}
           <AwesomeButtonProgress
             type="secondary"
             ripple={true}
@@ -149,6 +119,7 @@ const GraphQl = () => {
           >
             UPLOAD SCHEMAS
           </AwesomeButtonProgress>
+          {/* button to upload resolvers */}
           <AwesomeButtonProgress
             type="secondary"
             ripple={true}
@@ -166,6 +137,7 @@ const GraphQl = () => {
           </AwesomeButtonProgress>
           <br />
         </div>
+        {/* input for describe/it description  */}
         <Input
           placeholder="Describe Your Test"
           fullWidth={true}
@@ -173,17 +145,21 @@ const GraphQl = () => {
           type="text"
           onChange={inputHandler}
         />
-        <br />
-        {/* <Input
-          // placeholder="/graphql"
-          defaultValue='/graphql'
-          // defaultValue={test.desiredEndpoint || ""}
-          fullWidth={true}
-          id="desiredEndpoint"
-          disabled={true}
-          type="text"
-        /> */}
-        {/* <br/> */}
+
+        {/* switch for valid/invalid operation */}
+        <Grid component="label" container alignItems="center" justify="center" spacing={1}>
+          <Grid item>Valid Operation</Grid>
+          <Grid item>
+            <Switch
+              checked={operationIsValid}
+              onChange={validOperationHandler}
+              id="operationIsValid"
+            />
+          </Grid>
+          <Grid item>Invalid Operation</Grid>
+        </Grid>
+        
+        {/* input for query/mutation text */}
         <Input
           placeholder={`Enter Your Query/Mutation: ${'\n'}${'\n'} query: { users { id, name } } ${'\n'} mutation: { users { id, name } }`}
           fullWidth={true}
@@ -193,21 +169,11 @@ const GraphQl = () => {
           rows={4}
           onChange={inputHandler}
         />
-
-        {/* <Input
-          placeholder="Query Input"
-          defaultValue={test.inputData || ""}
-          fullWidth={true}
-          id="inputData"
-          type="text"
-          onChange={inputHandler}
-        /> */}
-        {/* <br/> */}
-
+        
+        {/* switch for query/mutation */}
         <Grid component="label" container alignItems="center" justify="center" spacing={1}>
           <Grid item>Query</Grid>
           <Grid item>
-
             <Switch
               checked={operationIsMutation}
               onChange={gqlOperationHandler}
@@ -217,10 +183,8 @@ const GraphQl = () => {
           <Grid item>Mutation</Grid>
         </Grid>
 
-        {/* <br/> */}
-        {/* conditionally render box where user enters data to be fed to the mutation.  */}
+        {/* conditionally render input where user enters data to be fed to the mutation.  */}
         {(operationIsMutation) ?
-
           <Input
             placeholder="Mutation Object with fields of input"
             defaultValue={test.mutationObject || ""}
@@ -234,14 +198,6 @@ const GraphQl = () => {
           :
           null
         }
-        {/* <Input
-          placeholder="Header"
-          defaultValue={test.headerInfo || ""}
-          fullWidth={true}
-          id="outputData"
-          type="text"
-          onChange={inputHandler}
-        /> */}
         <br></br>
       </div>
     </div>

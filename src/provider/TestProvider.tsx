@@ -4,9 +4,13 @@ import React, { useState } from "react";
 export const TestContext = React.createContext({});
 //create handler that can edit state w/ user input
 
+const initialState = {
+  operationIsValid : true,
+}
+
 //initial state
 const TestProviders = ({ children }: any) => {
-  const [test, setTest] = useState({});
+  const [test, setTest] = useState(initialState);
 
   const [monaco, monacoPoster] = useState('');
 

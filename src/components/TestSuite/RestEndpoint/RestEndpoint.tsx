@@ -58,7 +58,7 @@ const RestEndpoint = () => {
   return (
     <div>
       <i className="fas fa-vial"></i>
-      <div id="test-title">Test Builder</div>
+      <div id="test-title">REST Test Builder</div>
       <div className="rest-endpoint">
         {/* <h4>Server file name:</h4> */}
         {/* <h4>HTTP method:</h4> */}
