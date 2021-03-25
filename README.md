@@ -28,12 +28,23 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ![eeql-2-gif](https://user-images.githubusercontent.com/71619815/112027649-9b793f80-8af4-11eb-8574-4337a12d9595.gif)
 
 REST
-- Upload the specified server file associated with the project directory uploaded.
-- Input information within the _Test Builder Module_ to create a test file within the created/existing test folder.  
+- Select the REST button
+- Select the request method that you plan on testing
+- Upload the server file of your project
+- Fill out the requested fields within the _Test Builder Module_
+- Press the save button to automatically create a Jest-and-Supertest-based REST test !
 
 GRAPHQL
-- eeQL _Test Builder Module_ require an additonal schema file to properly access the necessary structures in building GraphQL endpoint tests.
-- The neccessary inputs will default sytatically to GraphQL requirements. You can chose to override this functionality by filling out the required inputs.
+- Select the GraphQL button
+- Upload the schema file of your project
+- Upload the resolvers file of your project
+- Provide a description of the test
+- Determine if the operation is a valid or invalid one
+- Provide the operation (query/mutation) text
+- Determine if the operation is a query or a mutation
+- Optionally, provide a mutation object if the operation is a mutation instead of a query
+- Press the save button to generate an easyGraphQL-based operation test!
+
 
 <br/>
 
@@ -54,6 +65,7 @@ Please make sure to update tests as appropriate.
 [Kimberley Spicer]( https://www.linkedin.com/in/kimberleyspicer/) |
 [Ramtin Khoee](https://www.linkedin.com/in/ramtinkhoee/) |
 <br/>
+
 ## License
 This project is licensed under the [MIT license](https://choosealicense.com/licenses/mit/).
 
