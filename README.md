@@ -1,5 +1,5 @@
 # eeQL
-<img width="673" alt="eeql_github copy" src="https://user-images.githubusercontent.com/71619815/112024099-150f2e80-8af1-11eb-80b8-7280bfaa85b3.png">
+<img width="473" alt="eeql_github copy" src="https://user-images.githubusercontent.com/71619815/112024099-150f2e80-8af1-11eb-80b8-7280bfaa85b3.png">
 
 _"EEQL is a standalone test creation suite that constructs reliable endpoint tests for both GraphQL and RESTful API's."_. 
 
@@ -17,7 +17,7 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ### GETTING STARTED
 
 
-![intro](https://user-images.githubusercontent.com/71619815/112514890-01630280-8d53-11eb-9b3d-62931589df36.gif)
+<img src="https://user-images.githubusercontent.com/71619815/112514890-01630280-8d53-11eb-9b3d-62931589df36.gif" width="450">
 
 
 - Input desired port for proper integration into your project
@@ -29,7 +29,7 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ### TEST CREATION
 
 <b> REST </b>
-![rest](https://user-images.githubusercontent.com/71619815/112514915-07f17a00-8d53-11eb-8b11-34cdad7d3754.gif)
+<img src="https://user-images.githubusercontent.com/71619815/112514915-07f17a00-8d53-11eb-8b11-34cdad7d3754.gif" width="450">
 
 - Select the REST button
 - Select the request method that you plan on testing
@@ -39,7 +39,7 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 
 
 <b> GRAPHQL </b>
-![ql](https://user-images.githubusercontent.com/71619815/112514948-0f188800-8d53-11eb-9db1-e2ebaea7c6f1.gif)
+<img src="https://user-images.githubusercontent.com/71619815/112514948-0f188800-8d53-11eb-9db1-e2ebaea7c6f1.gif" width="450">
 
 - Select the GraphQL button
 - Upload the schema file of your project
