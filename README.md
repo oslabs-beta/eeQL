@@ -16,9 +16,9 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ## Usage
 ### GETTING STARTED
 
-
-<img src="https://user-images.githubusercontent.com/71619815/112514890-01630280-8d53-11eb-9b3d-62931589df36.gif" width="450">
-
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514890-01630280-8d53-11eb-9b3d-62931589df36.gif" width="650">
+<br>
 
 - Input desired port for proper integration into your project
 - Upload a project directory (note: a testing folder will be created if none exists).
@@ -29,8 +29,9 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ### TEST CREATION
 
 <b> REST </b>
-<img src="https://user-images.githubusercontent.com/71619815/112514915-07f17a00-8d53-11eb-8b11-34cdad7d3754.gif" width="450">
-
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514915-07f17a00-8d53-11eb-8b11-34cdad7d3754.gif" width="650">
+<br>
 - Select the REST button
 - Select the request method that you plan on testing
 - Upload the server file of your project
@@ -39,8 +40,9 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 
 
 <b> GRAPHQL </b>
-<img src="https://user-images.githubusercontent.com/71619815/112514948-0f188800-8d53-11eb-9db1-e2ebaea7c6f1.gif" width="450">
-
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514948-0f188800-8d53-11eb-9db1-e2ebaea7c6f1.gif" width="650">
+<br>
 - Select the GraphQL button
 - Upload the schema file of your project
 - Upload the resolvers file of your project
