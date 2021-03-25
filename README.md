@@ -27,14 +27,14 @@ Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) fo
 ### TEST CREATION
 ![eeql-2-gif](https://user-images.githubusercontent.com/71619815/112027649-9b793f80-8af4-11eb-8574-4337a12d9595.gif)
 
-REST
+<b> REST </b>
 - Select the REST button
 - Select the request method that you plan on testing
 - Upload the server file of your project
 - Fill out the requested fields within the _Test Builder Module_
 - Press the save button to automatically create a Jest-and-Supertest-based REST test !
 
-GRAPHQL
+<b> GRAPHQL </b>
 - Select the GraphQL button
 - Upload the schema file of your project
 - Upload the resolvers file of your project
@@ -55,7 +55,7 @@ Please make sure to update tests as appropriate.
 <br/>
 
 ## Contact and Inquiries
-[Contact us](contact@eeql.io) for all other issues/inquiries.
+[Contact us](contact@eeql.io) for all other issues/inquiries. If you'd like to follow up on updates with eeQL, please check us out [here](https://www.linkedin.com/company/eeql/about/)!
 
 <br/>
 
