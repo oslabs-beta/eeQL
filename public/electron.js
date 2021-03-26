@@ -1,23 +1,24 @@
+let currentWindow;
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
 import * as url from "url";
 
 // currentWindow represents our current rendered page in electron app
-let currentWindow;
-
 // create a function that opens a create a new window
 function newWindow() {
   currentWindow = new BrowserWindow({
     title: "eeQL",
     // to be determined
-    icon: null,
+    icon: path.join(__dirname, 'assets/icon.png'),
     // eeql-blue
     backgroundColor: "##1c90f5",
     // starting dimensions of new window
+    minHeight: 700,
+    minWidth: 700,
     height: 800,
     width: 800,
     // allow integration of node modules in build.
-    webPreferences: { nodeIntegration: true },
+    webPreferences: { nodeIntegration: true, webSecurity: false },
   });
 
   // check if dist folder exists by running a test on the node environmnet
@@ -33,7 +34,7 @@ function newWindow() {
       // https://github.com/nodejs/node/issues/25099
       url.format({
         // allow electron to render a file (html), in our dist folder
-        pathname: path.resolve(__dirname, "../dist/index.html"),
+        pathname: path.resolve(__dirname, "../dist/render/index.html"),
         // set type
         protocol: "file:",
         // allow for propper formating of directory name.
