@@ -1,5 +1,5 @@
 # eeQL
-<img width="673" alt="eeql_github copy" src="https://user-images.githubusercontent.com/71619815/112024099-150f2e80-8af1-11eb-80b8-7280bfaa85b3.png">
+<img width="473" alt="eeql_github copy" src="https://user-images.githubusercontent.com/71619815/112024099-150f2e80-8af1-11eb-80b8-7280bfaa85b3.png">
 
 _"EEQL is a standalone test creation suite that constructs reliable endpoint tests for both GraphQL and RESTful API's."_. 
 
@@ -7,16 +7,18 @@ _"EEQL is a standalone test creation suite that constructs reliable endpoint tes
 
 ## Installation
 
-Visit [eeQL.io](https://www.eeql.io/) to install application. 
+Please dive into [eeQL.io](https://www.eeql.io/) to install this application. 
 
-Refer to [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) for more information on compatability and previous releases.
+Refer to our [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) for more information on compatability and previous releases.
 
 <br/>
 
 ## Usage
 ### GETTING STARTED
 
-![eeql-1-gif](https://user-images.githubusercontent.com/71619815/112025449-67048400-8af2-11eb-9b8f-71187e8ba7f2.gif)
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514890-01630280-8d53-11eb-9b3d-62931589df36.gif" width="650">
+<br>
 
 - Input desired port for proper integration into your project
 - Upload a project directory (note: a testing folder will be created if none exists).
@@ -25,15 +27,32 @@ Refer to [Builds/Resources](https://github.com/oslabs-beta/eeQL/releases) for mo
 <br/>
 
 ### TEST CREATION
-![eeql-2-gif](https://user-images.githubusercontent.com/71619815/112027649-9b793f80-8af4-11eb-8574-4337a12d9595.gif)
 
-REST
-- Upload the specified server file associated with the project directory uploaded.
-- Input information within the _Test Builder Module_ to create a test file within the created/existing test folder.  
+<b> REST </b>
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514915-07f17a00-8d53-11eb-8b11-34cdad7d3754.gif" width="650">
+<br>
+- Select the REST button
+- Select the request method that you plan on testing
+- Upload the server file of your project
+- Fill out the requested fields within the _Test Builder Module_
+- Press the save button to automatically create a Jest-and-Supertest-based REST test !
 
-GRAPHQL
-- eeQL _Test Builder Module_ require an additonal schema file to properly access the necessary structures in building GraphQL endpoint tests.
-- The neccessary inputs will default sytatically to GraphQL requirements. You can chose to override this functionality by filling out the required inputs.
+
+<b> GRAPHQL </b>
+<br>
+<img src="https://user-images.githubusercontent.com/71619815/112514948-0f188800-8d53-11eb-9db1-e2ebaea7c6f1.gif" width="650">
+<br>
+- Select the GraphQL button
+- Upload the schema file of your project
+- Upload the resolvers file of your project
+- Provide a description of the test
+- Determine if the operation is a valid or invalid one
+- Provide the operation (query/mutation) text
+- Determine if the operation is a query or a mutation
+- Optionally, provide a mutation object if the operation is a mutation instead of a query
+- Press the save button to generate an easyGraphQL-based operation test!
+
 
 <br/>
 
@@ -44,9 +63,18 @@ Please make sure to update tests as appropriate.
 <br/>
 
 ## Contact and Inquiries
-[Contact us](contact@eeql.io) for all other issues/inquiries.
+[Contact us](contact@eeql.io) for all other issues/inquiries. If you'd like to follow up on updates with eeQL, please check us out [here](https://www.linkedin.com/company/eeql/about/)!
 
 <br/>
 
+## Developers 
+[Abu Fofanah](https://www.linkedin.com/in/abu-fofanah/) |
+[Jason Speare](https://www.linkedin.com/in/jason-speare/) |
+[Kimberley Spicer]( https://www.linkedin.com/in/kimberleyspicer/) |
+[Ramtin Khoee](https://www.linkedin.com/in/ramtinkhoee/) |
+<br/>
+
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the [MIT license](https://choosealicense.com/licenses/mit/).
+
+
