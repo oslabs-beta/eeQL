@@ -11,7 +11,7 @@ module.exports = {
   // create dev server conditions
   devtool: "source-map",
   devServer: {
-    contentBase: path.join(__dirname, "./dist"),
+    contentBase: path.join(__dirname, "./dist/render"),
     // allow fallback to origin
     historyApiFallback: true,
     compress: true,
@@ -31,7 +31,7 @@ module.exports = {
   // allow use of code editor and html render plugins
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "./src/index.html"),
+      template: "./src/index.html",
     }),
     new MonacoWebpackPlugin(),
   ],
@@ -81,10 +81,11 @@ module.exports = {
       },
     ],
   },
+  
 
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "index.js",
+    path: path.resolve(__dirname, "./dist/render"),
+    filename: "js/index.js",
     // altered to allow for access to public files
     publicPath: "./",
   },
